@@ -1,0 +1,34 @@
+{
+  "recipes": [
+    {
+      "title": "Chocolate Cake",
+      "body": "something....",
+      "author": "Hadas",
+      "id": 1
+    },
+    {
+      "title": "Cheese Cake",
+      "body": "something....",
+      "author": "Inbar",
+      "id": 2
+    },
+    {
+      "title": "Baklava",
+      "body": "something....",
+      "author": "Sarah",
+      "id": 3
+    },
+    {
+      "title": "gg",
+      "body": "werfg",
+      "author": "Hadas",
+      "id": 4
+    },
+    {
+      "title": "t",
+      "body": "hg",
+      "author": "Hadas",
+      "id": 5
+    }
+  ]
+}
