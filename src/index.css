@@ -38,7 +38,7 @@ code {
 }
 
 .content {
-  max-width: 600px;
+  max-width: 80%;
   margin: 40px auto;
   padding: 20px;
 }
@@ -71,6 +71,10 @@ code {
 
 .recipe-details div {
   margin: 20px;
+}
+
+.recipe-details img{
+  width:40%;
 }
 
 .recipe-details button {
@@ -117,4 +121,52 @@ code {
   padding: 8px;
   border-radius: 8px;
   cursor: pointer;
+}
+
+.polaroid-card {
+  background-color: white;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  width: 250px;
+  height: 300px;
+  margin: 10px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.polaroid-card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80%;
+}
+
+.image-container img {
+  width: 80%;
+  height: auto;
+}
+
+.caption-container {
+  text-align: center;
+  height: 20%;
+}
+
+.caption-container h2 {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.caption-container p {
+  margin: 0;
+}
+
+.recipe-card{
+  display: flex;
+  flex-wrap: wrap;
 }

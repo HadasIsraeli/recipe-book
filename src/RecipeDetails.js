@@ -24,8 +24,21 @@ const RecipeDetails = () => {
             {recipe && (
                 <article>
                     <h2>{recipe.title}</h2>
-                    <p>Written By {recipe.author}</p>
+                    <p>Written By: {recipe.author}</p>
+                    {!recipe.img && <img src="https://handletheheat.com/wp-content/uploads/2015/03/Best-Birthday-Cake-with-milk-chocolate-buttercream-SQUARE.jpg"
+                        alt="your-image-description" />}
+                    {recipe.img && <img src={recipe.img} alt={recipe.title} />}
+
+                    {recipe.temp && <h5>Oven Temperature: {recipe.temp} C</h5>}
+                    <h5>Total Time: {recipe.time} min</h5>
+                    <h4>Ingredients:</h4>
+                    <div>{recipe.ingredients.map(item => <li>{item}</li>)}</div>
+
+                    <h4>Instructions:</h4>
                     <div>{recipe.body}</div>
+                    {recipe.note && <h4>Notes:</h4>}
+                    {recipe.note && <div>{recipe.note}</div>}
+
                     <button onClick={handleDelete}>Delete</button>
                 </article>
             )}

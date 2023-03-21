@@ -4,31 +4,58 @@
       "title": "Chocolate Cake",
       "body": "something....",
       "author": "Hadas",
+      "ingredients": [
+        "a"
+      ],
+      "note": "a",
+      "time": "25",
+      "temp": "120",
       "id": 1
     },
     {
       "title": "Cheese Cake",
       "body": "something....",
       "author": "Inbar",
+      "ingredients": [
+        "a"
+      ],
+      "note": "a",
+      "time": "30",
+      "temp": "120",
       "id": 2
     },
     {
       "title": "Baklava",
       "body": "something....",
       "author": "Sarah",
+      "ingredients": [
+        "a"
+      ],
+      "note": "a",
+      "time": "40",
+      "temp": "120",
       "id": 3
     },
     {
-      "title": "gg",
-      "body": "werfg",
-      "author": "Hadas",
-      "id": 4
-    },
-    {
-      "title": "t",
-      "body": "hg",
-      "author": "Hadas",
-      "id": 5
+      "title": "Orange Cake",
+      "body": "Preheat the oven to 350F. Butter an 8x4-inch loaf pan or spray with baking spray with flour.\nIn a large bowl, whisk together flour, baking powder, and salt.\nIn another large bowl, combine sugar and orange zest. Rub the zest into the sugar with your fingers until the sugar is a light orange color. Add the oil, eggs, orange juice, and vanilla, and whisk until combined. Pour into the flour mixture and whisk together just until all of the flour is incorporated. Pour the batter into the prepared cake pan.\nBake for 1 hour and 10 minutes or until a wooden toothpick inserted into the center comes out with a few moist crumbs, covering loosely with foil after about an hour if it's looking very brown on top. Let the cake cool in the pan for 15 minutes. Remove and cool completely on a wire rack.",
+      "author": "preppykitchen",
+      "ingredients": [
+        "2½ cups all-purpose flour (300g)",
+        "¾ teaspoon baking powder",
+        "¼ teaspoon salt",
+        "1 cup granulated sugar (200g)",
+        "2 tablespoons orange zest (about 3 oranges)",
+        "1 cup vegetable oil (240ml)",
+        "¾ cup fresh orange juice (about 3 oranges/180ml)",
+        "3 large eggs",
+        "1 tablespoon vanilla extract"
+      ],
+      "note": "Rubbing the orange zest into the sugar helps the oils from the zest to release and absorb into the sugar. It makes the orange flavor stronger, and I do not recommend skipping it.\nI highly recommend using a scale to measure your flour. However, if you don’t have a scale, be sure to fluff your flour with a spoon and then spoon it into your cups before leveling it off with a knife. This method is the best way to measure flour without overpacking the measuring cup.\nThe eggs should be at room temperature to ensure they incorporate evenly into your batter without over-mixing. If you forgot to bring out your eggs, quickly bring them to room temperature by placing them in a large bowl and covering them with warm tap water for 5 minutes.\nMix the batter until just combined. You do not want to over-mix the batter as it can make the cake crumbly and tough.\nIt’s much easier to zest the oranges before juicing, so make sure to zest first. Use a microplane grater to zest the oranges. Be sure only to zest the orange portion as the white parts will be bitter.\nAvoid making the icing too thin, or the icing will slide off the orange cake.\nTo get more juice out of an orange, roll it under your palm on the countertop to loosen the juices.",
+      "time": "60",
+      "temp": "180",
+      "img": "https://preppykitchen.com/wp-content/uploads/2022/01/Orange-Cake-Recipe-330x330.jpg",
+      "id": 6
     }
   ]
 }

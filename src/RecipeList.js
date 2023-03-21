@@ -1,19 +1,29 @@
 import { Link } from "react-router-dom";
 
-const RecipeList = ({recipes,title}) => {
+const RecipeList = ({ recipes, title }) => {
 
     return (
         <div className="recipe-list">
             <h1>{title}</h1>
-            {recipes.map((recipe) => (
-                <div className="recipe-preview" key={recipe.id}>
+            <div className="recipe-card">
+                {recipes.map((recipe) => (
                     <Link to={`/recipes/${recipe.id}`}>
-                    
-                    <h2>{recipe.title}</h2>
-                    <p>Written by: {recipe.author}</p>
+                        <div className="polaroid-card" key={recipe.id}>
+
+                            <div className="image-container">
+                                {!recipe.img && <img src="https://handletheheat.com/wp-content/uploads/2015/03/Best-Birthday-Cake-with-milk-chocolate-buttercream-SQUARE.jpg"
+                                    alt="your-image-description" />}
+                                {recipe.img && <img src={recipe.img} alt={recipe.title} />}
+                            </div>
+                            <div className="caption-container">
+                                <h2>{recipe.title}</h2>
+                                <p>Written by: {recipe.author}</p>
+                            </div>
+
+                        </div>
                     </Link>
-                </div>
-            ))}
+                ))}
+            </div>
         </div>
     );
 }
