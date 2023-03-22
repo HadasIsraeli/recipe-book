@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const RecipeList = ({ recipes, title }) => {
 
@@ -7,8 +7,8 @@ const RecipeList = ({ recipes, title }) => {
             <h1>{title}</h1>
             <div className="recipe-card">
                 {recipes.map((recipe) => (
-                    <Link to={`/recipes/${recipe.id}`}>
-                        <div className="polaroid-card" key={recipe.id}>
+                    <NavLink to={`/recipes/${recipe.id}`} style={{ textDecoration: 'none' }}>
+                        <div className="polaroid-card" key={recipe.id} >
 
                             <div className="image-container">
                                 {!recipe.img && <img src="https://handletheheat.com/wp-content/uploads/2015/03/Best-Birthday-Cake-with-milk-chocolate-buttercream-SQUARE.jpg"
@@ -21,7 +21,7 @@ const RecipeList = ({ recipes, title }) => {
                             </div>
 
                         </div>
-                    </Link>
+                    </NavLink>
                 ))}
             </div>
         </div>
