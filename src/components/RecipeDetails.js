@@ -5,12 +5,12 @@ import { useHistory } from "react-router-dom";
 
 const RecipeDetails = () => {
     const { id } = useParams();
-    const { data: recipe, error, isPending } = useFetch('http://localhost:8000/recipes/' + id);
+    const { data: recipe, error, isPending } = useFetch('/api/recipes/' + id);
     const history = useHistory();
 
 
     const handleDelete = () => {
-        fetch('http://localhost:8000/recipes/' + recipe.id, {
+        fetch('/api/recipes/' + recipe._id, {
             method: 'DELETE',
         }).then(() => {
             history.push('/');

@@ -1,13 +1,14 @@
 import { NavLink } from "react-router-dom";
 
 const RecipeList = ({ recipes, title }) => {
+console.log(recipes);
 
     return (
         <div className="recipe-list">
             <h1>{title}</h1>
             <div className="recipe-card">
                 {recipes.map((recipe) => (
-                    <NavLink to={`/recipes/${recipe.id}`} style={{ textDecoration: 'none' }}>
+                    <NavLink to={`/recipes/${recipe._id}`} style={{ textDecoration: 'none' }}>
                         <div className="polaroid-card" key={recipe.id} >
 
                             <div className="image-container">

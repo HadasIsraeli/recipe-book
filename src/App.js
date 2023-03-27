@@ -1,11 +1,11 @@
 // import './App.css';
-import Navbar from './Navbar';
-import Home from './Home';
+import Navbar from './components/Navbar';
+import Home from './components/Home';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import Create from './Create';
-import RecipeDetails from './RecipeDetails';
-import NotFound from './NotFound';
-import Footer from './Footer';
+import Create from './components/Create';
+import RecipeDetails from './components/RecipeDetails';
+import NotFound from './components/NotFound';
+import Footer from './components/Footer';
 
 function App() {
   return (

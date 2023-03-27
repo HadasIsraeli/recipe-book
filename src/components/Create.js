@@ -20,7 +20,7 @@ const Create = () => {
 
         const recipe = { title, body, author, ingredients, note, time, temp };
         setIsPending(true);
-        fetch('http://localhost:8000/recipes', {
+        fetch('/api/recipes', {
             method: 'POST',
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(recipe)

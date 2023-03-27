@@ -1,7 +1,6 @@
-import { Link } from 'react-router-dom';
-import gitImg from './assets/github.png';
-import linkedIn from './assets/linkedin.png';
-import reactImg from './assets/reactlogo.png';
+import gitImg from '../assets/github.png';
+import linkedIn from '../assets/linkedin.png';
+import reactImg from '../assets/reactlogo.png';
 
 const Footer = () => {
 
