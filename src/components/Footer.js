@@ -1,6 +1,9 @@
 import gitImg from '../assets/github.png';
 import linkedIn from '../assets/linkedin.png';
 import reactImg from '../assets/reactlogo.png';
+import nodejs from '../assets/nodejs.png';
+import mongodb from '../assets/mongodb.png';
+import express from '../assets/express.png';
 
 const Footer = () => {
 
@@ -15,7 +18,11 @@ const Footer = () => {
                 </a>
             </div>
             <div>
-                <img src={reactImg} alt="reactlogo" title="reactlogo"/>
+                <img src={reactImg} alt="react" title="react"/>
+                <img src={nodejs} alt="nodejs" title="nodejs"/>
+                <img src={mongodb} alt="mongodb" title="mongodb"/>
+                <img src={express} alt="express" title="express"/>
+
             </div>
         </div>
     );
