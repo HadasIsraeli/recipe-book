@@ -8,7 +8,7 @@ const RecipeList = ({ recipes, title }) => {
             <div className="recipe-card">
                 {recipes.map((recipe) => (
                     <NavLink to={`/recipes/${recipe._id}`} style={{ textDecoration: 'none' }}>
-                        <div className="polaroid-card" key={recipe.id} >
+                        <div className="polaroid-card" key={recipe._id} >
 
                             <div className="image-container">
                                 {!recipe.img && <img src="https://handletheheat.com/wp-content/uploads/2015/03/Best-Birthday-Cake-with-milk-chocolate-buttercream-SQUARE.jpg"
