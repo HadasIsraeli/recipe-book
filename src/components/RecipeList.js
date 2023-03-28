@@ -1,7 +1,6 @@
 import { NavLink } from "react-router-dom";
 
 const RecipeList = ({ recipes, title }) => {
-console.log(recipes);
 
     return (
         <div className="recipe-list">
