@@ -116,6 +116,7 @@ code {
   padding: 8px;
   border-radius: 8px;
   cursor: pointer;
+  margin:10px;
 }
 
 .recipe-details button:hover {

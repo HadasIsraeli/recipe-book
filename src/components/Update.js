@@ -1,37 +1,78 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import useFetch from './useFetch';
 import { useHistory } from "react-router-dom";
 
-const Create = () => {
+const Update = () => {
+
+    const { id } = useParams();
+    // let { data: recipe, error, isPending } = useFetch('/api/recipes/' + id);
+
+    const [recipe, setRecipe] = useState({
+        title: '',
+        body: '',
+        author: '',
+        ingredients: [],
+        note: '',
+        time: '',
+        temp: ''
+    });
+    const [isPending, setIsPending] = useState(true);
+    const [error, setError] = useState(null);
+
     const [title, setTitle] = useState('');
     const [body, setBody] = useState('');
     const [author, setAuthor] = useState('Hadas');
     const [ingredients, setIngredients] = useState([]);
     const [item, setItem] = useState('');
     const [note, setNote] = useState('');
-    const [time, setTime] = useState(null);
+    const [time, setTime] = useState();
     const [temp, setTemp] = useState();
 
-    const [isPending, setIsPending] = useState(false);
+    useEffect(() => {
+        const fetchRecipe = async () => {
+            const response = await fetch('/api/recipes/' + id);
+            const json = await response.json();
+            console.log('fetched recipe', json);
+            if (response.ok) {
+                setIsPending(false);
+                setRecipe(json);
+                setTitle(json.title);
+                setAuthor(json.author);
+                setBody(json.body);
+                setIngredients(json.ingredients);
+                setTime(json.time);
+                setTemp(json.temp);
+                setNote(json.note);
+            } else {
+                setError(true);
+            }
+        }
+
+        fetchRecipe();
+    }, id);
+
+
     const history = useHistory();
     let authors_name = ['Hadas', 'Inbar', 'Sarah'];
 
     const hanndleSubmit = (e) => {
         e.preventDefault();
 
-        const recipe = { title, body, author, ingredients, note, time, temp };
+        const updated_recipe = { title, body, author, ingredients, note, time, temp };
         setIsPending(true);
-        fetch('/api/recipes', {
-            method: 'POST',
+        fetch('/api/recipes/' + id, {
+            method: 'PATCH',
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(recipe)
+            body: JSON.stringify(updated_recipe)
         }).then(() => {
             setIsPending(false);
-            history.push('/');
+            history.push('/recipes/' + id);
         });
     }
 
     const handleAddItem = () => {
-        if (item != '') {
+        if (item !== '') {
             setIngredients([...ingredients, item]);
             setItem('');
             console.log('added item!', ingredients);
@@ -41,17 +82,17 @@ const Create = () => {
     }
 
     const handleDeleteItem = (ingredient) => {
-        let arr = ingredients.filter(ing => ing != ingredient);
+        let arr = ingredients.filter(ing => ing !== ingredient);
         setIngredients(arr);
     }
 
     return (
         <div className="create">
             <div>
-                <h2>Add New Recipe</h2>
+                <h2>update Recipe</h2>
                 <form onSubmit={hanndleSubmit}>
                     <label>Recipe Title:</label>
-                    <input type="text" required name="title" placeholder="Apple pie"
+                    <input type="text" required name="title"
                         value={title} onChange={(e) => setTitle(e.target.value)} />
 
 
@@ -84,8 +125,8 @@ const Create = () => {
                             <option value="author">{author}</option>
                         ))}
                     </select>
-                    {!isPending && (ingredients.length > 0) && <button type="submit">Add Recipe</button>}
-                    {isPending && <button disabled>Adding Recipe...</button>}
+                    {!isPending && (ingredients.length > 0) && <button type="submit">Update Recipe</button>}
+                    {isPending && <button disabled>Updating Recipe...</button>}
 
                 </form>
             </div>
@@ -102,4 +143,4 @@ const Create = () => {
     );
 }
 
-export default Create;
+export default Update;

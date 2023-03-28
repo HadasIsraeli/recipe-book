@@ -17,6 +17,11 @@ const RecipeDetails = () => {
         });
     }
 
+    const handleUpdate = () => {
+        console.log(recipe);
+        history.push('/update/' + recipe._id);
+    }
+
     return (
         <div className="recipe-details">
             {isPending && <div>Loading...</div>}
@@ -40,6 +45,7 @@ const RecipeDetails = () => {
                     {recipe.note && <div>{recipe.note}</div>}
 
                     <button onClick={handleDelete}>Delete</button>
+                    <button onClick={handleUpdate}>Update</button>
                 </article>
             )}
         </div>

@@ -6,6 +6,7 @@ import Create from './components/Create';
 import RecipeDetails from './components/RecipeDetails';
 import NotFound from './components/NotFound';
 import Footer from './components/Footer';
+import Update from './components/Update';
 
 function App() {
   return (
@@ -22,6 +23,9 @@ function App() {
             </Route>
             <Route path="/recipes/:id">
               <RecipeDetails />
+            </Route>
+            <Route path="/update/:id">
+              <Update />
             </Route>
             <Route path="*">
               <NotFound />
