@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import useFetch from './useFetch';
+// import useFetch from './useFetch';
 import { useHistory } from "react-router-dom";
 
 const Update = () => {
@@ -37,6 +37,7 @@ const Update = () => {
             if (response.ok) {
                 setIsPending(false);
                 setRecipe(json);
+                console.log('recipe',recipe,json);
                 setTitle(json.title);
                 setAuthor(json.author);
                 setBody(json.body);
@@ -46,6 +47,7 @@ const Update = () => {
                 setNote(json.note);
             } else {
                 setError(true);
+                console.log(error);
             }
         }
 

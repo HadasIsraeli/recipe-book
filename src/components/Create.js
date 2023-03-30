@@ -14,7 +14,7 @@ const Create = () => {
     const [isPending, setIsPending] = useState(false);
     const [error, setError] = useState(null);
     const history = useHistory();
-    let authors_name = ['Hadas', 'Inbar', 'Sarah'];
+    // let authors_name = ['Hadas', 'Inbar', 'Sarah'];
     const [authors, setAuthors] = useState([]);
 
     useEffect(() => {
@@ -27,6 +27,7 @@ const Create = () => {
                 setAuthors(json);
             } else {
                 setError(true);
+                console.log(error);
             }
         }
 
@@ -49,7 +50,7 @@ const Create = () => {
     }
 
     const handleAddItem = () => {
-        if (item != '') {
+        if (item !== '') {
             setIngredients([...ingredients, item]);
             setItem('');
             console.log('added item!', ingredients);
@@ -59,7 +60,7 @@ const Create = () => {
     }
 
     const handleDeleteItem = (ingredient) => {
-        let arr = ingredients.filter(ing => ing != ingredient);
+        let arr = ingredients.filter(ing => ing !== ingredient);
         setIngredients(arr);
     }
 
@@ -98,8 +99,8 @@ const Create = () => {
                     <label>Recipe author:</label>
                     <select name="author"
                         value={author} onChange={(e) => setAuthor(e.target.value)}>
-                        {authors_name.map((author) => (
-                            <option value="author">{author}</option>
+                        {authors.map((author) => (
+                            <option value="author">{author.fname} {author.lname}</option>
                         ))}
                     </select>
                     {!isPending && (ingredients.length > 0) && <button type="submit">Add Recipe</button>}
