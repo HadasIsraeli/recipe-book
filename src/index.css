@@ -142,6 +142,10 @@ code {
   margin-bottom: 30px;
 }
 
+.create img {
+  width: 150px;
+}
+
 .create input,
 .create select,
 .create textarea {

@@ -129,8 +129,8 @@ const Update = () => {
                         Image:
                         <input type="file" name="imgfile" accept=".jpeg,.png,.jpg" onChange={handleFileUpload} />
                         {/* <button type="button" onClick={handleAddImg}>add img</button> */}
-                        {img && <img src={img} alt={title} />}
                     </label>
+                        {img && <img src={img} alt={title} />}
 
                     <label>Notes:</label>
                     <textarea name="note"
