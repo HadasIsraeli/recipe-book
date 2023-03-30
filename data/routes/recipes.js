@@ -21,10 +21,10 @@ router.patch('/recipes/:id', updateRecipe);
 
 router.get('/users/:id', getUser);
 
-router.get('/users/', createUser);
+router.post('/users/', createUser);
 
-router.get('/users/:id', deleteUser);
+router.delete('/users/:id', deleteUser);
 
-router.get('/users/:id', updateUser);
+router.patch('/users/:id', updateUser);
 
 module.exports = router;
