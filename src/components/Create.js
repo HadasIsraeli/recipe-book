@@ -123,6 +123,7 @@ const Create = () => {
                         Image:
                         <input type="file" name="imgfile" accept=".jpeg,.png,.jpg" onChange={handleFileUpload} />
                         {/* <button type="button" onClick={handleAddImg}>add img</button> */}
+                        <img src={img} alt={title} />
                     </label>
 
                     <label>Recipe author:</label>
