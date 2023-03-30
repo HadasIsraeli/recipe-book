@@ -16,6 +16,8 @@ const Create = () => {
     const history = useHistory();
     // let authors_name = ['Hadas', 'Inbar', 'Sarah'];
     const [authors, setAuthors] = useState([]);
+    // const [image, setImage] = useState('');
+    const [img, setImg] = useState('');
 
     useEffect(() => {
         const fetchAuthorsList = async () => {
@@ -36,8 +38,7 @@ const Create = () => {
 
     const hanndleSubmit = (e) => {
         e.preventDefault();
-
-        const recipe = { title, body, author, ingredients, note, time, temp };
+        const recipe = { title, body, author, ingredients, note, time, temp, img };
         setIsPending(true);
         fetch('/api/recipes/recipes', {
             method: 'POST',
@@ -63,6 +64,28 @@ const Create = () => {
         let arr = ingredients.filter(ing => ing !== ingredient);
         setIngredients(arr);
     }
+
+
+    const handleFileUpload = async (e) => {
+        // setImage(e.target.files[0])
+        const base64 = await ConverToBase64(e.target.files[0]);
+        setImg(base64);
+        console.log(base64);
+    }
+    // const handleAddImg = () => {
+    //     console.log(img);
+    //     const recipe = { title: "img test", body: "a", author: 'hadas', ingredients: ['a'], note: "a", time: 3, temp: 3, img };
+    //     setIsPending(true);
+    //     fetch('/uploads', {
+    //         method: 'POST',
+    //         headers: { "Content-Type": "application/json" },
+    //         body: JSON.stringify(recipe)
+    //     }).then(() => {
+    //         console.log(recipe);
+    //         setIsPending(false);
+    //     });
+
+    // }
 
     return (
         <div className="create">
@@ -96,6 +119,12 @@ const Create = () => {
                     <textarea name="note"
                         value={note} onChange={(e) => setNote(e.target.value)} />
 
+                    <label>
+                        Image:
+                        <input type="file" name="imgfile" accept=".jpeg,.png,.jpg" onChange={handleFileUpload} />
+                        {/* <button type="button" onClick={handleAddImg}>add img</button> */}
+                    </label>
+
                     <label>Recipe author:</label>
                     <select name="author"
                         value={author} onChange={(e) => setAuthor(e.target.value)}>
@@ -122,3 +151,16 @@ const Create = () => {
 }
 
 export default Create;
+
+function ConverToBase64(file) {
+    return new Promise((resolve, reject) => {
+        const fileReader = new FileReader();
+        fileReader.readAsDataURL(file);
+        fileReader.onload = () => {
+            resolve(fileReader.result);
+        }
+        fileReader.onerror = (err) => {
+            reject(err);
+        }
+    })
+}

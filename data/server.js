@@ -6,6 +6,9 @@ const recipesRoutes = require('./routes/recipes');
 
 const app = express();
 
+// const Recipe = require('./models/recipesModel');
+
+
 app.use(express.json());
 
 app.use((req, res, next) => {
@@ -29,3 +32,13 @@ app.get('/', (req, res) => {
     res.json({ mssg: "welcome to the api" });
 });
 
+// app.post('/uploads', async (req, res) => {
+//     const upload = req.body;
+//     try {
+//         const uploadImg = await Recipe.create(upload);
+//         uploadImg.save();
+//         res.status(201).json({ msg: "new img" })
+//     } catch (err) {
+//         res.status(409).json({ msg: "error creating img" });
+//     }
+// })
