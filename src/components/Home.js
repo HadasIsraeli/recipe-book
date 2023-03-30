@@ -9,7 +9,7 @@ const Home = () => {
 
   useEffect(() => {
     const fetchRecipeList = async () => {
-      const response = await fetch('/api/recipes');
+      const response = await fetch('/api/recipes/recipes');
       const json = await response.json();
       console.log(json);
       if (response.ok) {

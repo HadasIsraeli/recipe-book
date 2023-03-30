@@ -31,7 +31,7 @@ const Update = () => {
 
     useEffect(() => {
         const fetchRecipe = async () => {
-            const response = await fetch('/api/recipes/' + id);
+            const response = await fetch('/api/recipes/recipes/' + id);
             const json = await response.json();
             console.log('fetched recipe', json);
             if (response.ok) {
@@ -61,7 +61,7 @@ const Update = () => {
 
         const updated_recipe = { title, body, author, ingredients, note, time, temp };
         setIsPending(true);
-        fetch('/api/recipes/' + id, {
+        fetch('/api/recipes/recipes/' + id, {
             method: 'PATCH',
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(updated_recipe)

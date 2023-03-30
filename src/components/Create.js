@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 
 const Create = () => {
@@ -12,15 +12,33 @@ const Create = () => {
     const [temp, setTemp] = useState();
 
     const [isPending, setIsPending] = useState(false);
+    const [error, setError] = useState(null);
     const history = useHistory();
     let authors_name = ['Hadas', 'Inbar', 'Sarah'];
+    const [authors, setAuthors] = useState([]);
+
+    useEffect(() => {
+        const fetchAuthorsList = async () => {
+            const response = await fetch('/api/recipes/users');
+            const json = await response.json();
+            console.log(json);
+            if (response.ok) {
+                setIsPending(false);
+                setAuthors(json);
+            } else {
+                setError(true);
+            }
+        }
+
+        fetchAuthorsList();
+    }, []);
 
     const hanndleSubmit = (e) => {
         e.preventDefault();
 
         const recipe = { title, body, author, ingredients, note, time, temp };
         setIsPending(true);
-        fetch('/api/recipes', {
+        fetch('/api/recipes/recipes', {
             method: 'POST',
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(recipe)
