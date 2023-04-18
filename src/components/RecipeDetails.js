@@ -8,12 +8,11 @@ const RecipeDetails = () => {
     const { data: recipe, error, isPending } = useFetch('/api/recipes/recipes/' + id);
     const history = useHistory();
 
-
     const handleDelete = () => {
         fetch('/api/recipes/recipes/' + recipe._id, {
             method: 'DELETE',
         }).then(() => {
-            history.push('/');
+            history.push('/Home');
         });
     }
 

@@ -89,7 +89,7 @@ const getUser = async (req, res) => {
         return res.status(404).json({ error: 'getUser no such User id' });
     }
     const user = await User.findById(id);
-    if (!recipe) {
+    if (!user) {
         return res.status(404).json({ error: 'getUser no User found' });
     }
     res.status(200).json(user);

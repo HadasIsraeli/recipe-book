@@ -58,7 +58,7 @@ const Update = () => {
 
 
     const history = useHistory();
-    let authors_name = ['Hadas', 'Inbar', 'Sarah'];
+    // let authors_name = ['Hadas', 'Inbar', 'Sarah'];
 
     const hanndleSubmit = (e) => {
         e.preventDefault();
@@ -136,13 +136,13 @@ const Update = () => {
                     <textarea name="note"
                         value={note} onChange={(e) => setNote(e.target.value)} />
 
-                    <label>Recipe author:</label>
-                    <select name="author"
+                    <label>Recipe author: {author}</label>
+                    {/* <select name="author"
                         value={author} onChange={(e) => setAuthor(e.target.value)}>
                         {authors_name.map((author) => (
                             <option value="author">{author}</option>
                         ))}
-                    </select>
+                    </select> */}
                     {!isPending && (ingredients.length > 0) && <button type="submit">Update Recipe</button>}
                     {isPending && <button disabled>Updating Recipe...</button>}
 

@@ -4,16 +4,8 @@ import { useEffect, useState } from "react";
 const useFetch = (url) => {
 
     const [data, setData] = useState(null);
-    // const [recipes, setRecipe] = useState([
-    //   { title: 'Chocolate Cake', body: 'something....', author: 'Hadas', id: 1 },
-    //   { title: 'Cheese Cake', body: 'something....', author: 'Inbar', id: 2 },
-    //   { title: 'Baklava', body: 'something....', author: 'Sarah', id: 3 }
-    // ]);
-
     const [isPending, setIsPending] = useState(true);
     const [error, setError] = useState(null);
-
-
 
     useEffect(() => {
         const abortControls = new AbortController();

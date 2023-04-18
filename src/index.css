@@ -116,7 +116,7 @@ code {
   padding: 8px;
   border-radius: 8px;
   cursor: pointer;
-  margin:10px;
+  margin: 10px;
 }
 
 .recipe-details button:hover {
@@ -172,7 +172,8 @@ code {
   box-shadow: 1px 3px 5px #892be273;
 }
 
-.ingredients-input, .edit-ingredients {
+.ingredients-input,
+.edit-ingredients {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -205,9 +206,11 @@ code {
 }
 
 .image-container img {
-  width: 100%;
-  height: auto;
+  /* width: 100%;
+  height: auto; */
   border-radius: 20px;
+  width: 200px;
+  height: 200px;
 }
 
 .caption-container {
@@ -232,4 +235,15 @@ code {
 .recipe-card {
   display: flex;
   flex-wrap: wrap;
+}
+
+.navbar button {
+  background: #7f7b8298;
+  color: #ffffff;
+  border: 0;
+  padding: 5px;
+  border-radius: 10px;
+  cursor: pointer;
+  height: 24px;
+  margin: 10px
 }

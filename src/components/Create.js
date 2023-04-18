@@ -1,10 +1,12 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useHistory } from "react-router-dom";
+import { LoggedContext } from '../LoggedInUser';
 
 const Create = () => {
+    const { user, setUser } = useContext(LoggedContext);
     const [title, setTitle] = useState('');
     const [body, setBody] = useState('');
-    const [author, setAuthor] = useState('Hadas');
+    const [author, setAuthor] = useState(user.fname + ' ' + user.lname);
     const [ingredients, setIngredients] = useState([]);
     const [item, setItem] = useState('');
     const [note, setNote] = useState('');
@@ -15,26 +17,26 @@ const Create = () => {
     const [error, setError] = useState(null);
     const history = useHistory();
     // let authors_name = ['Hadas', 'Inbar', 'Sarah'];
-    const [authors, setAuthors] = useState([]);
+    // const [authors, setAuthors] = useState([]);
     // const [image, setImage] = useState('');
     const [img, setImg] = useState('');
 
-    useEffect(() => {
-        const fetchAuthorsList = async () => {
-            const response = await fetch('/api/recipes/users');
-            const json = await response.json();
-            console.log(json);
-            if (response.ok) {
-                setIsPending(false);
-                setAuthors(json);
-            } else {
-                setError(true);
-                console.log(error);
-            }
-        }
+    // useEffect(() => {
+    //     const fetchAuthorsList = async () => {
+    //         const response = await fetch('/api/recipes/users');
+    //         const json = await response.json();
+    //         console.log(json);
+    //         if (response.ok) {
+    //             setIsPending(false);
+    //             setAuthors(json);
+    //         } else {
+    //             setError(true);
+    //             console.log(error);
+    //         }
+    //     }
 
-        fetchAuthorsList();
-    }, []);
+    //     fetchAuthorsList();
+    // }, []);
 
     const hanndleSubmit = (e) => {
         e.preventDefault();
@@ -46,7 +48,7 @@ const Create = () => {
             body: JSON.stringify(recipe)
         }).then(() => {
             setIsPending(false);
-            history.push('/');
+            history.push('/Home');
         });
     }
 
@@ -124,15 +126,15 @@ const Create = () => {
                         <input type="file" name="imgfile" accept=".jpeg,.png,.jpg" onChange={handleFileUpload} />
                         {/* <button type="button" onClick={handleAddImg}>add img</button> */}
                     </label>
-                        <img src={img} alt={title} />
+                    <img src={img} alt={title} />
 
-                    <label>Recipe author:</label>
-                    <select name="author"
+                    <label>Recipe author: {author}</label>
+                    {/* <select name="author"
                         value={author} onChange={(e) => setAuthor(e.target.value)}>
                         {authors.map((author) => (
                             <option value="author">{author.fname} {author.lname}</option>
                         ))}
-                    </select>
+                    </select> */}
                     {!isPending && (ingredients.length > 0) && <button type="submit">Add Recipe</button>}
                     {isPending && <button disabled>Adding Recipe...</button>}
 
