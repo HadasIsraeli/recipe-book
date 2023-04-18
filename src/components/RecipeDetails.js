@@ -1,12 +1,16 @@
 import { useParams } from "react-router-dom";
 import useFetch from './useFetch';
 import { useHistory } from "react-router-dom";
+import { LoggedContext } from '../LoggedInUser';
+import { useContext } from 'react';
 
 
 const RecipeDetails = () => {
     const { id } = useParams();
     const { data: recipe, error, isPending } = useFetch('/api/recipes/recipes/' + id);
     const history = useHistory();
+    const { user, setUser } = useContext(LoggedContext);//global users, to know who is logged in all the app pages
+
 
     const handleDelete = () => {
         fetch('/api/recipes/recipes/' + recipe._id, {
@@ -43,8 +47,8 @@ const RecipeDetails = () => {
                     {recipe.note && <h4>Notes:</h4>}
                     {recipe.note && <div>{recipe.note}</div>}
 
-                    <button onClick={handleDelete}>Delete</button>
-                    <button onClick={handleUpdate}>Update</button>
+                    {(user.manager || ((user.fname + ' ' + user.lname).toString() == recipe.author)) && <button onClick={handleDelete}>Delete</button>}
+                    {(user.manager || ((user.fname + ' ' + user.lname).toString() == recipe.author)) && <button onClick={handleUpdate}>Update</button>}
                 </article>
             )}
         </div>
