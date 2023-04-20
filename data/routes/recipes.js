@@ -7,6 +7,7 @@ const router = express.Router();
 router.get('/recipes', getAllRecipes);
 
 router.get('/authors', getAuthors);
+
 router.get('/users', getUsers);
 
 router.get('/recipes/:id', getRecipe);

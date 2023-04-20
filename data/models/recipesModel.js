@@ -9,7 +9,8 @@ const RecipesSchema = new Schema({
     note: { type: String, required: false },
     time: { type: Number, required: true },
     temp: { type: Number, required: false },
-    img: { type: String, required: false }
+    img: { type: String, required: false },
+    author_id:{ type: String, required: true }
 }, { timestamps: true })
 
 module.exports = mongoose.model('Recipe', RecipesSchema);

@@ -10,7 +10,7 @@ const RecipeDetails = () => {
     const { data: recipe, error, isPending } = useFetch('/api/recipes/recipes/' + id);
     const history = useHistory();
     const { user, setUser } = useContext(LoggedContext);//global users, to know who is logged in all the app pages
-
+console.log('recipe details',recipe);
 
     const handleDelete = () => {
         fetch('/api/recipes/recipes/' + recipe._id, {

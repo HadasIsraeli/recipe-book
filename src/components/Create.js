@@ -12,7 +12,7 @@ const Create = () => {
     const [note, setNote] = useState('');
     const [time, setTime] = useState(null);
     const [temp, setTemp] = useState();
-
+const author_id=user._id;
     const [isPending, setIsPending] = useState(false);
     const [error, setError] = useState(null);
     const history = useHistory();
@@ -40,7 +40,8 @@ const Create = () => {
 
     const hanndleSubmit = (e) => {
         e.preventDefault();
-        const recipe = { title, body, author, ingredients, note, time, temp, img };
+        const recipe = { title, body, author, ingredients, note, time, temp, img ,author_id};
+        console.log('recipe!',recipe);
         setIsPending(true);
         fetch('/api/recipes/recipes', {
             method: 'POST',

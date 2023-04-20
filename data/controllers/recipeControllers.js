@@ -22,11 +22,18 @@ const getRecipe = async (req, res) => {
 }
 
 const createRecipe = async (req, res) => {
-    const { title, body, author, ingredients, note, time, temp, img } = req.body;
+    const { title, body, author, ingredients, note, time, temp, img, author_id } = req.body;
 
     try {
-        const recipe = await Recipe.create({ title, body, author, ingredients, note, time, temp, img });
-        res.status(200).json(recipe);
+        const recipe = await Recipe.create({ title, body, author, ingredients, note, time, temp, img, author_id })
+            .then(async result => {
+                console.log(result, result._id.toString());
+                await updateUser({ params: { id: author_id }, body: { $push: { recipes: result._id.toString() } } });
+                res.status(200).json(recipe);
+            }, err => {
+                console.log(err);
+                res.status(400).json({ error: error.message });
+            });
     } catch (error) {
         res.status(400).json({ error: error.message });
     }
