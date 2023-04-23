@@ -18,6 +18,7 @@ console.log('recipe details',recipe);
         }).then(() => {
             history.push('/Home');
         });
+        // history.push('/Home');
     }
 
     const handleUpdate = () => {

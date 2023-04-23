@@ -10,7 +10,7 @@ export const LoggedContextWrapper = ({ children }) => {
         lname: "",
         author: false,
         recipes: [],
-        collection: [],
+        collections: [],
         email: "",
         password: "",
         manager: false,

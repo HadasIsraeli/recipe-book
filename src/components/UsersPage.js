@@ -41,7 +41,7 @@ const UsersPage = () => {
                             <h2>{user.fname} {user.lname}</h2>
                             <p>{user.email}</p>
                             <p>recipes: {user.recipes.length}</p>
-                            <p>collection: {user.collections.length}</p>
+                            <p>collections: {user.collections.length}</p>
                             {user.author && <p>author</p>}
                             {user.manager && <p>manager</p>}
                         </div>

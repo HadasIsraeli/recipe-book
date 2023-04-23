@@ -9,7 +9,7 @@ function AddUser({ addUser, error }) {
         lname: "",
         author: false,
         recipes: [],
-        collection: [],
+        collections: [],
         email: "",
         password: "",
         manager: false,

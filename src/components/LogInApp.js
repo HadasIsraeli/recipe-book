@@ -36,13 +36,12 @@ function LogInApp() {
         console.log('user_found', user_found);
         if (user_found.length > 0) {
             setUser({
-                collections: [],
                 _id: user_found[0]._id,
                 fname: user_found[0].fname,
                 lname: user_found[0].lname,
                 author: user_found[0].author,
                 recipes: user_found[0].recipes,
-                collection: user_found[0].collection,
+                collections: user_found[0].collections,
                 email: user_found[0].email,
                 password: user_found[0].password,
                 manager: user_found[0].manager,

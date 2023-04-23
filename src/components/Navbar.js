@@ -13,13 +13,12 @@ const Navbar = () => {
     const Logout = () => {      //set global user details to first state and logout
         setUser({
             LoggedIn: false,
-            collections: [],
             _id: "",
             fname: "",
             lname: "",
             author: false,
             recipes: [],
-            collection: [],
+            collections: [],
             manager: false
         });
         history.push('/'); //sends the user to login page

@@ -73,7 +73,7 @@ function Register() {
                     manager: false,
                     author: false,
                     recipes: [],
-                    collection: [],
+                    collections: [],
                 };
                 setIsPending(true);
                 fetch('/api/recipes/users', {

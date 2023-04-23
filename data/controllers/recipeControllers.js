@@ -44,11 +44,20 @@ const deleteRecipe = async (req, res) => {
     if (!mongoose.Types.ObjectId.isValid(id)) {
         return res.status(404).json({ error: 'deleteRecipe no such recipe id' });
     }
-    const recipe = await Recipe.findOneAndDelete({ _id: id });
-    if (!recipe) {
-        return res.status(404).json({ error: 'deleteRecipe no recipe found' });
-    }
-    res.status(200).json(recipe);
+    const recipe = await Recipe.findOneAndDelete({ _id: id })
+        .then(async result => {
+            console.log('result.author_id.toString():', result.author_id.toString());
+            await updateUser({ params: { id: result.author_id.toString() }, body: { $pull: { recipes: id } } },res);
+            res.status(200).json(result);
+        }, err => {
+            console.log(err);
+            res.status(400).json({ error: error.message });
+        });
+
+    // if (!recipe) {
+    //     return res.status(404).json({ error: 'deleteRecipe no recipe found' });
+    // }
+    // res.status(200).json(recipe);
 }
 
 const updateRecipe = async (req, res) => {
@@ -121,12 +130,14 @@ const deleteUser = async (req, res) => {
     const user = await User.findOneAndDelete({ _id: id });
     if (!user) {
         return res.status(404).json({ error: 'deleteUser no user found' });
+    } else {
+        return res.status(200).json(user);
     }
-    res.status(200).json(user);
 }
 
 const updateUser = async (req, res) => {
     const { id } = req.params;
+    console.log('updateUser:', req.body, id);
     if (!mongoose.Types.ObjectId.isValid(id)) {
         return res.status(404).json({ error: 'updateUser no such user id' });
     }
@@ -136,8 +147,9 @@ const updateUser = async (req, res) => {
     );
     if (!user) {
         return res.status(404).json({ error: 'updateUser no user found' });
+    } else {
+        return res.status(200).json(user);
     }
-    res.status(200).json(user);
 }
 
 module.exports = {
