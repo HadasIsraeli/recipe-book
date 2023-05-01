@@ -38,7 +38,7 @@ const UserProfile = () => {
                     <p>collections: {user.collections.length}</p>
                     {user.author && <p>author</p>}
                     {user.manager && <p>manager</p>}
-                    {(user.recipes.length > 0) && <div>recipes:
+                    {(recipes.length > 0) && <div>recipes:
                         <div className="recipe-card">
                             {recipes.map((recipe) => (
                                 <NavLink to={`/recipes/${recipe._id}`} style={{ textDecoration: 'none' }}>

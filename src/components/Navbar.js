@@ -40,9 +40,9 @@ const Navbar = () => {
                         <img className="profile-img" src={profile_user} alt="profile_user" title="profile_user" />
                     </button>
                     <div className="dropdown-content">
-                    <Link to="/UserProfile">Profile</Link>
+                        <Link to="/UserProfile">Profile</Link>
 
-                        <button className="logout-btn"onClick={Logout}>
+                        <button className="logout-btn" onClick={Logout}>
                             Logout
                         </button>
                     </div>
@@ -57,9 +57,21 @@ const Navbar = () => {
                 <div className="links">
                     <Link to="/">Home</Link>
                 </div>
-                <button onClick={Logout}>
+                <div className="dropdown">
+                    <button>
+                        <img className="profile-img" src={profile_user} alt="profile_user" title="profile_user" />
+                    </button>
+                    <div className="dropdown-content">
+                    <Link to="/UserProfile">Profile</Link>
+
+                        <button className="logout-btn" onClick={Logout}>
+                            Logout
+                        </button>
+                    </div>
+                </div>
+                {/* <button onClick={Logout}>
                     Logout
-                </button>
+                </button> */}
             </nav>
         );
     } else if (!user.manager && user.author && logged_in) {
@@ -71,9 +83,21 @@ const Navbar = () => {
                     <Link to="/">Home</Link>
                     <Link to="/create">New Recipe</Link>
                 </div>
-                <button onClick={Logout}>
+                <div className="dropdown">
+                    <button>
+                        <img className="profile-img" src={profile_user} alt="profile_user" title="profile_user" />
+                    </button>
+                    <div className="dropdown-content">
+                        <Link to="/UserProfile">Profile</Link>
+
+                        <button className="logout-btn" onClick={Logout}>
+                            Logout
+                        </button>
+                    </div>
+                </div>
+                {/* <button onClick={Logout}>
                     Logout
-                </button>
+                </button> */}
             </nav>
         );
     } else {
