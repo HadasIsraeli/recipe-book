@@ -40,6 +40,8 @@ const Navbar = () => {
                         <img className="profile-img" src={profile_user} alt="profile_user" title="profile_user" />
                     </button>
                     <div className="dropdown-content">
+                    <Link to="/UserProfile">Profile</Link>
+
                         <button className="logout-btn"onClick={Logout}>
                             Logout
                         </button>

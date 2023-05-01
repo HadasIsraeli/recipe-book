@@ -12,6 +12,7 @@ import LogInApp from './components/LogInApp';
 import { LoggedContextWrapper } from './LoggedInUser';
 import UsersPage from './components/UsersPage';
 import UserDetails from './components/UserDetails';
+import UserProfile from './components/UserProfile';
 
 function App() {
   return (
@@ -36,6 +37,9 @@ function App() {
             </Route>
             <Route path="/users">
               <UsersPage />
+            </Route>
+            <Route path="/UserProfile">
+              <UserProfile />
             </Route>
             <Route path="/recipes/:id">
               <RecipeDetails />
