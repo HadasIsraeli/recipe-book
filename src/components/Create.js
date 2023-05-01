@@ -49,7 +49,7 @@ const author_id=user._id;
             body: JSON.stringify(recipe)
         }).then(() => {
             setIsPending(false);
-            history.push('/Home');
+            history.push('/');
         });
     }
 

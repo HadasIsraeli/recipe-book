@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { LoggedContext } from '../LoggedInUser';
 import { useHistory } from "react-router-dom";
 import { useContext } from 'react';
+import profile_user from '../assets/profile_user.png'
 
 const Navbar = () => {
     const { user, setUser } = useContext(LoggedContext);
@@ -30,13 +31,20 @@ const Navbar = () => {
                 <h1>The MerimIsraeli Recipe Book</h1>
                 <div className="h1">MANAGER page</div>
                 <div className="links">
-                    <Link to="/Home">Home</Link>
+                    <Link to="/">Home</Link>
                     <Link to="/create">New Recipe</Link>
                     <Link to="/users">Users</Link>
                 </div>
-                <button onClick={Logout}>
-                    Logout
-                </button>
+                <div className="dropdown">
+                    <button>
+                        <img className="profile-img" src={profile_user} alt="profile_user" title="profile_user" />
+                    </button>
+                    <div className="dropdown-content">
+                        <button className="logout-btn"onClick={Logout}>
+                            Logout
+                        </button>
+                    </div>
+                </div>
             </nav>
         );
     } else if (!user.manager && !user.author && logged_in) {
@@ -45,7 +53,7 @@ const Navbar = () => {
                 <h1>The MerimIsraeli Recipe Book</h1>
                 <div className="h1">USER page</div>
                 <div className="links">
-                    <Link to="/Home">Home</Link>
+                    <Link to="/">Home</Link>
                 </div>
                 <button onClick={Logout}>
                     Logout
@@ -58,7 +66,7 @@ const Navbar = () => {
                 <h1>The MerimIsraeli Recipe Book</h1>
                 <div className="h1">USER author page</div>
                 <div className="links">
-                    <Link to="/Home">Home</Link>
+                    <Link to="/">Home</Link>
                     <Link to="/create">New Recipe</Link>
                 </div>
                 <button onClick={Logout}>
@@ -71,8 +79,16 @@ const Navbar = () => {
             <nav className="navbar">
                 <h1>The MerimIsraeli Recipe Book</h1>
                 <div className="links">
-                    <Link to="/Register">Register</Link>
-                    <Link to="/">Login</Link>
+                    <Link to="/">Home</Link>
+                    <div className="dropdown">
+                        <button>
+                            <img className="profile-img" src={profile_user} alt="profile_user" title="profile_user" />
+                        </button>
+                        <div className="dropdown-content">
+                            <Link to="/Register">Register</Link>
+                            <Link to="/Login">Login</Link>
+                        </div>
+                    </div>
                 </div>
             </nav>
         );

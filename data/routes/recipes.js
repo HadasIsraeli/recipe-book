@@ -1,6 +1,6 @@
 const express = require('express');
 const { createRecipe, getAllRecipes, getRecipe, deleteRecipe, updateRecipe, 
-    getUser, getUsers, createUser, deleteUser, updateUser,getAuthors } = require('../controllers/recipeControllers');
+    getUser, getUsers, createUser, deleteUser, updateUser,getAuthors,getUserRecipes } = require('../controllers/recipeControllers');
 const router = express.Router();
 
 //----- Recipes -----
@@ -11,6 +11,8 @@ router.get('/authors', getAuthors);
 router.get('/users', getUsers);
 
 router.get('/recipes/:id', getRecipe);
+
+router.get('/userrecipes/:id', getUserRecipes);
 
 router.post('/recipes', createRecipe);
 

@@ -51,7 +51,7 @@ function LogInApp() {
 
             });
             console.log('MATCH', user);
-            history.push('/Home');
+            history.push('/');
         }
 
         else {

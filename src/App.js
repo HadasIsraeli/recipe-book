@@ -22,13 +22,13 @@ function App() {
         <Navbar />
         <div className="content">
           <Switch>
-          <Route exact path="/">
+          <Route exact path="/Login">
               <LogInApp />
             </Route>
             <Route exact path="/Register">
               <Register />
             </Route>
-            <Route exact path="/Home">
+            <Route exact path="/">
               <Home />
             </Route>
             <Route path="/create">

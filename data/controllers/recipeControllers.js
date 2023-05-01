@@ -21,6 +21,13 @@ const getRecipe = async (req, res) => {
     res.status(200).json(recipe);
 }
 
+const getUserRecipes = async (req, res) => {
+    const { id } = req.params;
+    const allUsersRecipes = await Recipe.find({ author_id: id });
+
+    res.status(200).json(allUsersRecipes);
+}
+
 const createRecipe = async (req, res) => {
     const { title, body, author, ingredients, note, time, temp, img, author_id } = req.body;
 
@@ -47,7 +54,7 @@ const deleteRecipe = async (req, res) => {
     const recipe = await Recipe.findOneAndDelete({ _id: id })
         .then(async result => {
             console.log('result.author_id.toString():', result.author_id.toString());
-            await updateUser({ params: { id: result.author_id.toString() }, body: { $pull: { recipes: id } } },res);
+            await updateUser({ params: { id: result.author_id.toString() }, body: { $pull: { recipes: id } } }, res);
             res.status(200).json(result);
         }, err => {
             console.log(err);
@@ -156,6 +163,7 @@ module.exports = {
     createRecipe,
     getAllRecipes,
     getRecipe,
+    getUserRecipes,
     deleteRecipe,
     updateRecipe,
     getUsers,

@@ -83,10 +83,10 @@ function Register() {
                 }).then(() => {
                     setIsPending(false);
                     setUser(new_user);
-                    history.push('/Home');
+                    history.push('/');
                 });
 
-                history.push('/Home'); //sending the new user to the main page
+                history.push('/'); //sending the new user to the main page
             }
             //     }
             // });

@@ -29,6 +29,8 @@ const UsersPage = () => {
     return (<div className="recipe-list">
         <h1>Users</h1>
         <div className="recipe-card">
+            {isPending && <div>Loading...</div>}
+            {error && <div>Error...</div>}
             {users.map((user) => (
                 <NavLink to={`/user/${user._id}`} style={{ textDecoration: 'none' }}>
                     <div className="polaroid-card" key={user._id} >

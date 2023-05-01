@@ -16,9 +16,9 @@ console.log('recipe details',recipe);
         fetch('/api/recipes/recipes/' + recipe._id, {
             method: 'DELETE',
         }).then(() => {
-            history.push('/Home');
+            history.push('/');
         });
-        // history.push('/Home');
+        // history.push('/');
     }
 
     const handleUpdate = () => {
