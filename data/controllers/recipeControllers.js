@@ -24,8 +24,12 @@ const getRecipe = async (req, res) => {
 const getUserRecipes = async (req, res) => {
     const { id } = req.params;
     const allUsersRecipes = await Recipe.find({ author_id: id });
-
     res.status(200).json(allUsersRecipes);
+}
+
+const getSearchRecipes = async (req, res) => {
+    const searchRecipes = await Recipe.find({ $text: { $search: req.params.id } });
+    res.status(200).json(searchRecipes);
 }
 
 const createRecipe = async (req, res) => {
@@ -164,6 +168,7 @@ module.exports = {
     getAllRecipes,
     getRecipe,
     getUserRecipes,
+    getSearchRecipes,
     deleteRecipe,
     updateRecipe,
     getUsers,

@@ -10,7 +10,7 @@ const RecipeDetails = () => {
     const { data: recipe, error, isPending } = useFetch('/api/recipes/recipes/' + id);
     const history = useHistory();
     const { user, setUser } = useContext(LoggedContext);//global users, to know who is logged in all the app pages
-console.log('recipe details',recipe);
+    console.log('recipe details', recipe);
 
     const handleDelete = () => {
         fetch('/api/recipes/recipes/' + recipe._id, {
@@ -26,6 +26,10 @@ console.log('recipe details',recipe);
         history.push('/update/' + recipe._id);
     }
 
+    const handleCollection = (collection) => {
+        console.log('add to favorites:', recipe, collection);
+    }
+
     return (
         <div className="recipe-details">
             {isPending && <div>Loading...</div>}
@@ -33,6 +37,7 @@ console.log('recipe details',recipe);
             {recipe && (
                 <article>
                     <h2>{recipe.title}</h2>
+                    <button onClick={() => handleCollection('favorites')}>add to favorites</button>
                     <p>Written By: {recipe.author}</p>
                     {!recipe.img && <img src="https://handletheheat.com/wp-content/uploads/2015/03/Best-Birthday-Cake-with-milk-chocolate-buttercream-SQUARE.jpg"
                         alt="your-image-description" />}

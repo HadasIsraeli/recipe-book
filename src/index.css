@@ -195,6 +195,31 @@ code {
   box-shadow: 1px 3px 5px #892be273;
 }
 
+.search {
+  background: #e9d7fa;
+  padding: 15px 10px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  position: absolute;
+  width: 90%;
+  box-shadow: 1px 3px 5px #b7b7b773;
+  border-radius: 8px;
+  min-height: 300px;
+  transform: translate(4%, -25px);
+  left: 0%;
+}
+
+.search button {
+  background: #892be298;
+  color: #ffffff;
+  border: 0;
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+  height: 30px;
+  margin: 10px;
+}
+
 .ingredients-input,
 .edit-ingredients {
   display: flex;

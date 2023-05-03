@@ -5,40 +5,58 @@ import { LoggedContext } from '../LoggedInUser';
 
 
 const Home = () => {
-  // const [recipes, setRecipes] = useState(null);
-  // const [isPending, setIsPending] = useState(true);
-  // const [error, setError] = useState(null);
   const { user, setUser } = useContext(LoggedContext);
-  let user_type = user.type;
-  
+  const [recipes_res, setRecipesRes] = useState(null);
+  const [Pending, setPending] = useState(true);
+  const [erro, setErr] = useState(null);
   const { data: recipes, error, isPending } = useFetch('/api/recipes/recipes');
-  // useEffect(() => {
-    
-  //   const fetchRecipeList = async () => {
-  //     const response = await fetch('/api/recipes/recipes');
-  //     const json = await response.json();
-  //     console.log(json);
-  //     if (response.ok) {
-  //       setIsPending(false);
-  //       setRecipes(json);
-  //       console.log('User Logged In',user);
-  //     } else {
-  //       setError(true);
-  //     }
-  //   }
+  const [search, SetSearch] = useState('');
+  const [search_win, setSearchWin] = useState(null);
 
-  //   fetchRecipeList();
-  // }, []);
+  const hanndleSubmit = async (e) => {
+    e.preventDefault();
+    setRecipesRes(null);
+    setPending(true);
+    console.log(search)
+    const response = await fetch('/api/recipes/searchrecipes/' + search);
+    const json = await response.json();
+    console.log("recipes results", json);
+    if (response.ok) {
+      setPending(false);
+      setRecipesRes(json);
+    } else {
+      setErr(true);
+      console.log(error);
+    }
+  }
 
+  const handleClose = () => {
+    SetSearch('');
+    setSearchWin(false);
+    setRecipesRes(null);
+  }
 
-  // const { data: recipes, isPending, error } = useFetch('http://localhost:8000/recipes');
+  const handleOpen = () => {
+    setSearchWin(true);
+    console.log(search_win);
+  }
 
   return (
     <div className="home">
+      <div >
+        {!search_win && <button onClick={() => handleOpen()}>search for recipes</button>}
+        {search_win && <form className="search" onSubmit={hanndleSubmit}>
+          <button type="button" onClick={() => handleClose()}>X</button>
+          <div>
+            <input type="text" name="search" value={search} onChange={(e) => SetSearch(e.target.value)} />
+            <button type="submit">Search</button>
+          </div>
+          {recipes_res && <RecipeList recipes={recipes_res} title='Results' />}
+        </form>}
+      </div>
       <div className="user">
         <h2>{user.fname} {user.lname} </h2>
         <div>{user.email} </div>
-        {/* <div>{user._id}</div> */}
       </div>
       {isPending && <div>Loading...</div>}
       {error && <div>{error}</div>}

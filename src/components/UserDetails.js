@@ -4,6 +4,7 @@ import useFetch from './useFetch';
 import { useHistory } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
+import RecipeList from "./RecipeList";
 
 
 const UserDetails = () => {
@@ -58,26 +59,30 @@ const UserDetails = () => {
                     <p>collections: {user.collections.length}</p>
                     {user.author && <p>author</p>}
                     {user.manager && <p>manager</p>}
-                    {(user.recipes.length > 0) && <div>recipes:
-                        <div className="recipe-card">
-                {recipes.map((recipe) => (
-                    <NavLink to={`/recipes/${recipe._id}`} style={{ textDecoration: 'none' }}>
-                        <div className="polaroid-card" key={recipe._id} >
+                    {(user.recipes.length > 0) &&
+                        <RecipeList recipes={recipes} title='recipes' />
 
-                            <div className="image-container">
-                                {!recipe.img && <img src="https://handletheheat.com/wp-content/uploads/2015/03/Best-Birthday-Cake-with-milk-chocolate-buttercream-SQUARE.jpg"
-                                    alt="your-image-description" />}
-                                {recipe.img && <img src={recipe.img} alt={recipe.title} />}
-                            </div>
-                            <div className="caption-container">
-                                <h2>{recipe.title}</h2>
-                                <p>Written by: {recipe.author}</p>
-                            </div>
+                        //         <div>recipes:
+                        //             <div className="recipe-card">
+                        //     {recipes.map((recipe) => (
+                        //         <NavLink to={`/recipes/${recipe._id}`} style={{ textDecoration: 'none' }}>
+                        //             <div className="polaroid-card" key={recipe._id} >
 
-                        </div>
-                    </NavLink>
-                ))}
-            </div></div>}
+                        //                 <div className="image-container">
+                        //                     {!recipe.img && <img src="https://handletheheat.com/wp-content/uploads/2015/03/Best-Birthday-Cake-with-milk-chocolate-buttercream-SQUARE.jpg"
+                        //                         alt="your-image-description" />}
+                        //                     {recipe.img && <img src={recipe.img} alt={recipe.title} />}
+                        //                 </div>
+                        //                 <div className="caption-container">
+                        //                     <h2>{recipe.title}</h2>
+                        //                     <p>Written by: {recipe.author}</p>
+                        //                 </div>
+
+                        //             </div>
+                        //         </NavLink>
+                        //     ))}
+                        // </div></div>
+                    }
                 </div>
             )}
         </div>
