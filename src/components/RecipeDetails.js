@@ -18,7 +18,6 @@ const RecipeDetails = () => {
         }).then(() => {
             history.push('/');
         });
-        // history.push('/');
     }
 
     const handleUpdate = () => {
@@ -26,10 +25,57 @@ const RecipeDetails = () => {
         history.push('/update/' + recipe._id);
     }
 
-    const handleCollection = (collection) => {
-        console.log('add to favorites:', recipe, collection);
+    const handleCollection = (type) => {
+        if (user._id == "") {
+            alert('Please login or register');
+        }
+        else {
+            let body = {
+                _id: recipe._id,
+                user_id: user._id
+            }
+            switch (type) {
+                case 'add':
+                    console.log('add to favorites:', recipe, type);
+
+                    fetch('/api/recipes/users/collections/', {
+                        method: 'POST',
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify(body)
+                    }).then(() => {
+                        fetchAuthorsList();
+                    });
+
+                    break;
+
+                case 'delete':
+                    console.log('delete to favorites:', recipe, type);
+
+                    fetch('/api/recipes/users/delcollections/', {
+                        method: 'POST',
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify(body)
+                    }).then(() => {
+                        fetchAuthorsList();
+                    });
+                    break;
+            }
+        }
     }
 
+
+    const fetchAuthorsList = async () => {
+        const response = await fetch('/api/recipes/users/' + user._id);
+        const json = await response.json();
+        console.log('users', json);
+        if (response.ok) {
+            // setIsPending(false);
+            setUser(json);
+        } else {
+            // setError(true);
+            console.log(error);
+        }
+    }
     return (
         <div className="recipe-details">
             {isPending && <div>Loading...</div>}
@@ -37,7 +83,9 @@ const RecipeDetails = () => {
             {recipe && (
                 <article>
                     <h2>{recipe.title}</h2>
-                    <button onClick={() => handleCollection('favorites')}>add to favorites</button>
+                    {!user.collections.includes(recipe._id) && <button onClick={() => handleCollection('add')}><i class="fa-regular fa-star"></i></button>}
+                    {user.collections.includes(recipe._id) && <button onClick={() => handleCollection('delete')}><i class="fa-solid fa-star"></i></button>}
+
                     <p>Written By: {recipe.author}</p>
                     {!recipe.img && <img src="https://handletheheat.com/wp-content/uploads/2015/03/Best-Birthday-Cake-with-milk-chocolate-buttercream-SQUARE.jpg"
                         alt="your-image-description" />}

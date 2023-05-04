@@ -163,6 +163,34 @@ const updateUser = async (req, res) => {
     }
 }
 
+
+const addToCollection = async (req, res) => {
+    const { id } = req.params;
+    const { user_id, _id } = req.body;
+    console.log(user_id, _id);
+    try {
+        updateUser({ params: { id: user_id }, body: { $push: { collections: _id } } });
+        return res.status(200).json('ok');
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+    }
+}
+
+const deleteFromCollectio = async (req, res) => {
+    const { id } = req.params;
+    const { user_id, _id } = req.body;
+
+    if (!mongoose.Types.ObjectId.isValid(user_id)) {
+        return res.status(404).json({ error: 'deleteRecipe no such user id' });
+    }
+    try {
+        updateUser({ params: { id: user_id }, body: { $pull: { collections: _id } } }, res);
+        res.status(200).json('ok');
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+    };
+}
+
 module.exports = {
     createRecipe,
     getAllRecipes,
@@ -176,5 +204,7 @@ module.exports = {
     createUser,
     deleteUser,
     updateUser,
-    getAuthors
+    getAuthors,
+    addToCollection,
+    deleteFromCollectio
 }

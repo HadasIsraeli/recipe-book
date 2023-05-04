@@ -1,6 +1,7 @@
 const express = require('express');
 const { createRecipe, getAllRecipes, getRecipe, deleteRecipe, updateRecipe, 
-    getUser, getUsers, createUser, deleteUser, updateUser,getAuthors,getUserRecipes,getSearchRecipes } = require('../controllers/recipeControllers');
+    getUser, getUsers, createUser, deleteUser, updateUser,getAuthors,getUserRecipes,
+    getSearchRecipes,addToCollection,deleteFromCollectio } = require('../controllers/recipeControllers');
 const router = express.Router();
 
 //----- Recipes -----
@@ -31,5 +32,9 @@ router.post('/users/', createUser);
 router.delete('/users/:id', deleteUser);
 
 router.patch('/users/:id', updateUser);
+
+router.post('/users/collections/',addToCollection);
+
+router.post('/users/delcollections/',deleteFromCollectio);
 
 module.exports = router;

@@ -29,21 +29,24 @@ const Navbar = () => {
         return (
             <nav className="navbar">
                 <h1>The MerimIsraeli Recipe Book</h1>
-                <div className="h1">MANAGER page</div>
+                {/* <div className="h1">MANAGER page</div> */}
                 <div className="links">
-                    <Link to="/">Home</Link>
-                    <Link to="/create">New Recipe</Link>
-                    <Link to="/users">Users</Link>
+                    <Link to="/"><i class="fa-solid fa-house"></i></Link>
+                    <Link to="/create"><i class="fa-solid fa-plus"></i></Link>
+                    <Link to="/users"><i class="fa-solid fa-users"></i></Link>
                 </div>
                 <div className="dropdown">
                     <button>
                         <img className="profile-img" src={profile_user} alt="profile_user" title="profile_user" />
                     </button>
                     <div className="dropdown-content">
-                        <Link to="/UserProfile">Profile</Link>
-
+                        <div className="user">
+                            <div>{user.fname} {user.lname} </div>
+                            <p>{user.email} </p>
+                        </div>
+                        <Link to="/UserProfile"><i class="fa-solid fa-address-card"></i></Link>
                         <button className="logout-btn" onClick={Logout}>
-                            Logout
+                        <i class="fa-solid fa-right-from-bracket"></i>
                         </button>
                     </div>
                 </div>
@@ -55,17 +58,20 @@ const Navbar = () => {
                 <h1>The MerimIsraeli Recipe Book</h1>
                 <div className="h1">USER page</div>
                 <div className="links">
-                    <Link to="/">Home</Link>
+                    <Link to="/"><i class="fa-solid fa-house"></i></Link>
                 </div>
                 <div className="dropdown">
                     <button>
                         <img className="profile-img" src={profile_user} alt="profile_user" title="profile_user" />
                     </button>
                     <div className="dropdown-content">
-                    <Link to="/UserProfile">Profile</Link>
-
+                        <div className="user">
+                            <div>{user.fname} {user.lname} </div>
+                            <p>{user.email} </p>
+                        </div>
+                        <Link to="/UserProfile"><i class="fa-solid fa-address-card"></i></Link>
                         <button className="logout-btn" onClick={Logout}>
-                            Logout
+                        <i class="fa-solid fa-right-from-bracket"></i>
                         </button>
                     </div>
                 </div>
@@ -80,18 +86,21 @@ const Navbar = () => {
                 <h1>The MerimIsraeli Recipe Book</h1>
                 <div className="h1">USER author page</div>
                 <div className="links">
-                    <Link to="/">Home</Link>
-                    <Link to="/create">New Recipe</Link>
+                    <Link to="/"><i class="fa-solid fa-house"></i></Link>
+                    <Link to="/create"><i class="fa-solid fa-plus"></i></Link>
                 </div>
                 <div className="dropdown">
                     <button>
                         <img className="profile-img" src={profile_user} alt="profile_user" title="profile_user" />
                     </button>
                     <div className="dropdown-content">
-                        <Link to="/UserProfile">Profile</Link>
-
+                        <div className="user">
+                            <div>{user.fname} {user.lname} </div>
+                            <p>{user.email} </p>
+                        </div>
+                        <Link to="/UserProfile"><i class="fa-solid fa-address-card"></i></Link>
                         <button className="logout-btn" onClick={Logout}>
-                            Logout
+                        <i class="fa-solid fa-right-from-bracket"></i>
                         </button>
                     </div>
                 </div>
@@ -105,7 +114,7 @@ const Navbar = () => {
             <nav className="navbar">
                 <h1>The MerimIsraeli Recipe Book</h1>
                 <div className="links">
-                    <Link to="/">Home</Link>
+                    <Link to="/"><i class="fa-solid fa-house"></i></Link>
                     <div className="dropdown">
                         <button>
                             <img className="profile-img" src={profile_user} alt="profile_user" title="profile_user" />

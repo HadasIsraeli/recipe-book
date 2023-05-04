@@ -2,11 +2,12 @@ import { useEffect, useState, useContext } from "react";
 import RecipeList from "./RecipeList";
 import useFetch from "./useFetch";
 import { LoggedContext } from '../LoggedInUser';
+import magnifier from '../assets/magnifier.png';
 
 
 const Home = () => {
   const { user, setUser } = useContext(LoggedContext);
-  const [recipes_res, setRecipesRes] = useState(null);
+  const [recipes_res, setRecipesRes] = useState([]);
   const [Pending, setPending] = useState(true);
   const [erro, setErr] = useState(null);
   const { data: recipes, error, isPending } = useFetch('/api/recipes/recipes');
@@ -15,7 +16,7 @@ const Home = () => {
 
   const hanndleSubmit = async (e) => {
     e.preventDefault();
-    setRecipesRes(null);
+    setRecipesRes([]);
     setPending(true);
     console.log(search)
     const response = await fetch('/api/recipes/searchrecipes/' + search);
@@ -33,7 +34,7 @@ const Home = () => {
   const handleClose = () => {
     SetSearch('');
     setSearchWin(false);
-    setRecipesRes(null);
+    setRecipesRes([]);
   }
 
   const handleOpen = () => {
@@ -43,21 +44,19 @@ const Home = () => {
 
   return (
     <div className="home">
-      <div >
-        {!search_win && <button onClick={() => handleOpen()}>search for recipes</button>}
+      {!search_win && <button className="search-btn" onClick={() => handleOpen()}><i class="fa-solid fa-magnifying-glass"></i></button>}
+      <div>
         {search_win && <form className="search" onSubmit={hanndleSubmit}>
-          <button type="button" onClick={() => handleClose()}>X</button>
+          <button type="button" style={{ background: "#892be200", color: "#711bb3" }} onClick={() => handleClose()}><i class="fa-regular fa-circle-xmark"></i></button>
           <div>
-            <input type="text" name="search" value={search} onChange={(e) => SetSearch(e.target.value)} />
+            <input type="text" name="search" value={search} placeholder="search recipe title..." onChange={(e) => SetSearch(e.target.value)} />
             <button type="submit">Search</button>
           </div>
-          {recipes_res && <RecipeList recipes={recipes_res} title='Results' />}
+          {(recipes_res.length > 0) && <RecipeList recipes={recipes_res} title='Results' />}
+          {/* {(recipes_res.length == 0) && <div>No results found</div>} */}
         </form>}
       </div>
-      <div className="user">
-        <h2>{user.fname} {user.lname} </h2>
-        <div>{user.email} </div>
-      </div>
+
       {isPending && <div>Loading...</div>}
       {error && <div>{error}</div>}
       {recipes && <RecipeList recipes={recipes} title='All Recipes' />}
