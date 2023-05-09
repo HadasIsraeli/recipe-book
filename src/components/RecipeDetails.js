@@ -43,7 +43,7 @@ const RecipeDetails = () => {
                         headers: { "Content-Type": "application/json" },
                         body: JSON.stringify(body)
                     }).then(() => {
-                        fetchAuthorsList();
+                        fetchUser();
                     });
 
                     break;
@@ -56,26 +56,26 @@ const RecipeDetails = () => {
                         headers: { "Content-Type": "application/json" },
                         body: JSON.stringify(body)
                     }).then(() => {
-                        fetchAuthorsList();
+                        fetchUser();
                     });
                     break;
             }
         }
     }
 
-
-    const fetchAuthorsList = async () => {
+    const fetchUser = async () => {
         const response = await fetch('/api/recipes/users/' + user._id);
         const json = await response.json();
         console.log('users', json);
         if (response.ok) {
             // setIsPending(false);
-            setUser(json);
+            setUser({...user,collections:json.collections});
         } else {
             // setError(true);
             console.log(error);
         }
     }
+
     return (
         <div className="recipe-details">
             {isPending && <div>Loading...</div>}

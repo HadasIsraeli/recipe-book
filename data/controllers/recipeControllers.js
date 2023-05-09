@@ -176,7 +176,7 @@ const addToCollection = async (req, res) => {
     }
 }
 
-const deleteFromCollectio = async (req, res) => {
+const deleteFromCollection = async (req, res) => {
     const { id } = req.params;
     const { user_id, _id } = req.body;
 
@@ -189,6 +189,21 @@ const deleteFromCollectio = async (req, res) => {
     } catch (error) {
         res.status(400).json({ error: error.message });
     };
+}
+
+const getfavorites = async (req, res) => {
+    const { collections } = req.body;
+    // console.log(req.body,req.body.length-1);
+    const favorites = [];
+    req.body.forEach(async (element, index) => {
+        const allUsersRecipes = await Recipe.find({ _id: element });
+        favorites.push(allUsersRecipes[0]);
+        // console.log(index,allUsersRecipes[0]);
+        if (index == req.body.length-1&&favorites.length==req.body.length) {
+            // console.log('favorites',favorites,index);
+            res.status(200).json(favorites);
+        }
+    });
 }
 
 module.exports = {
@@ -206,5 +221,6 @@ module.exports = {
     updateUser,
     getAuthors,
     addToCollection,
-    deleteFromCollectio
+    deleteFromCollection,
+    getfavorites
 }

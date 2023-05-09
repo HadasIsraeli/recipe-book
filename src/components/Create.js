@@ -49,6 +49,7 @@ const author_id=user._id;
             body: JSON.stringify(recipe)
         }).then(() => {
             setIsPending(false);
+            fetchUser();
             history.push('/');
         });
     }
@@ -75,6 +76,20 @@ const author_id=user._id;
         setImg(base64);
         console.log(base64);
     }
+
+    const fetchUser = async () => {
+        const response = await fetch('/api/recipes/users/' + user._id);
+        const json = await response.json();
+        console.log('users', json);
+        if (response.ok) {
+            // setIsPending(false);
+            setUser({...user,recipes:json.recipes});
+        } else {
+            // setError(true);
+            console.log(error);
+        }
+    }
+
     // const handleAddImg = () => {
     //     console.log(img);
     //     const recipe = { title: "img test", body: "a", author: 'hadas', ingredients: ['a'], note: "a", time: 3, temp: 3, img };

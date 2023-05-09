@@ -1,7 +1,7 @@
 const express = require('express');
 const { createRecipe, getAllRecipes, getRecipe, deleteRecipe, updateRecipe, 
     getUser, getUsers, createUser, deleteUser, updateUser,getAuthors,getUserRecipes,
-    getSearchRecipes,addToCollection,deleteFromCollectio } = require('../controllers/recipeControllers');
+    getSearchRecipes,addToCollection,deleteFromCollection,getfavorites } = require('../controllers/recipeControllers');
 const router = express.Router();
 
 //----- Recipes -----
@@ -23,6 +23,8 @@ router.delete('/recipes/:id', deleteRecipe);
 
 router.patch('/recipes/:id', updateRecipe);
 
+router.post('/recipes/favorites/',getfavorites);
+
 //----- Users -----
 
 router.get('/users/:id', getUser);
@@ -35,6 +37,6 @@ router.patch('/users/:id', updateUser);
 
 router.post('/users/collections/',addToCollection);
 
-router.post('/users/delcollections/',deleteFromCollectio);
+router.post('/users/delcollections/',deleteFromCollection);
 
 module.exports = router;
