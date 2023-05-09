@@ -50,13 +50,13 @@ const UserProfile = () => {
             {user && (
                 <div>
                     <h2>{user.fname} {user.lname}</h2>
-                    <p>{user.email}</p>
-                    <p>recipes: {user.recipes.length}</p>
-                    <p>favorites: {user.collections.length}</p>
-                    {user.author && <p>author</p>}
-                    {user.manager && <p>manager</p>}
+                    <p><i class="fa-solid fa-envelope"></i> {user.email}</p>
+                    <p><i class="fa-solid fa-book"></i> recipes: {user.recipes.length}</p>
+                    <p><i class="fa-solid fa-star"></i> favorites: {user.collections.length}</p>
+                    {user.author && <p><i class="fa-solid fa-pen"></i> author</p>}
+                    {user.manager && <p><i class="fa-sharp fa-solid fa-user-tie"></i> manager</p>}
                     {(recipes.length > 0) &&
-                        <RecipeList recipes={recipes} title='recipes' />
+                        <RecipeList recipes={recipes} title='my recipes' />
 
                         // <div>recipes:
                         //     <div className="recipe-card">
@@ -79,8 +79,9 @@ const UserProfile = () => {
                         //         ))}
                         //     </div></div>
                     }
-                    {(favorites.length > 0) &&
-                        <RecipeList recipes={favorites} title='favorites' />
+                    {(favorites.length > 0) &&<div>
+                       <RecipeList recipes={favorites} title='my favorites' />
+                       </div>
                     }
 
                 </div>

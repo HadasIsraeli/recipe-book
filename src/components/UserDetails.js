@@ -46,7 +46,39 @@ const UserDetails = () => {
         }
     }
 
-    console.log(user);
+    const makeAuthor = async () => {
+        const response = await fetch('/api/recipes/users/' + user._id, {
+            method: 'PATCH',
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ author: !user.author })
+        });
+        const json = await response.json();
+        if (response.ok) {
+            fetchUser();
+        }
+    }
+
+    const fetchUser = async () => {
+        const response = await fetch('/api/recipes/users/' + user._id);
+        const json = await response.json();
+        console.log('users', json);
+        if (response.ok) {
+            // setIsPending(false);
+            setUser({...user,author:json.author});
+        } else {
+            // setError(true);
+            console.log(error);
+        }
+    }
+
+    const handleDelete = () => {
+        fetch('/api/recipes/users/' + user._id, {
+            method: 'DELETE',
+        }).then(() => {
+            history.push('/users');
+        });
+    } 
+
     return (
         <div className="recipe-details">
             {isPending && <div>Loading...</div>}
@@ -54,11 +86,11 @@ const UserDetails = () => {
             {user && (
                 <div>
                     <h2>{user.fname} {user.lname}</h2>
-                    <p>{user.email}</p>
-                    <p>recipes: {user.recipes.length}</p>
-                    <p>collections: {user.collections.length}</p>
-                    {user.author && <p>author</p>}
-                    {user.manager && <p>manager</p>}
+                    <p><i class="fa-solid fa-envelope"></i> {user.email}</p>
+                    <p><i class="fa-solid fa-book"></i> recipes: {user.recipes.length}</p>
+                    <p><i class="fa-solid fa-star"></i> favorites: {user.collections.length}</p>
+                    {user.author && <p><i class="fa-solid fa-pen"></i> author</p>}
+                    {user.manager && <p><i class="fa-sharp fa-solid fa-user-tie"></i> manager</p>}
                     {(user.recipes.length > 0) &&
                         <RecipeList recipes={recipes} title='recipes' />
 
@@ -83,6 +115,11 @@ const UserDetails = () => {
                         //     ))}
                         // </div></div>
                     }
+                    {!user.author&&<button onClick={makeAuthor}>make Author</button>}
+                    {user.author&&<button onClick={makeAuthor}>remove Author</button>}
+                    <button onClick={handleDelete}>DELETE</button>
+
+
                 </div>
             )}
         </div>
