@@ -72,6 +72,7 @@ function Register() {
                     email: new_user.email,
                     manager: false,
                     author: false,
+                    avatar:"fa-solid fa-user",
                     recipes: [],
                     collections: [],
                 };

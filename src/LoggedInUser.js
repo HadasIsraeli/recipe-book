@@ -12,7 +12,9 @@ export const LoggedContextWrapper = ({ children }) => {
         recipes: [],
         collections: [],
         email: "",
+        avatar: "",
         password: "",
+        avatar:"",
         manager: false,
         LoggedIn:false
     });

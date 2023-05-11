@@ -1,6 +1,4 @@
 import { LoggedContext } from '../LoggedInUser';
-import { NavLink } from "react-router-dom";
-import { useHistory } from "react-router-dom";
 import { useState, useContext, useEffect } from "react";
 import RecipeList from "./RecipeList";
 
@@ -12,7 +10,13 @@ const UserProfile = () => {
     const [error, setError] = useState(null);
     const [recipes, setRecipes] = useState([]);
     const [favorites, setFavorites] = useState([]);
+    const [settings_win, setSettingsWin] = useState(false);
 
+    let avatars = ["fa-solid fa-user-secret", "fa-solid fa-user", "fa-solid fa-user-tie",
+        "fa-solid fa-user-ninja", "fa-solid fa-user-graduate",
+        "fa-solid fa-user-astronaut", "fa-solid fa-poo", "fa-brands fa-suse",
+        "fa-solid fa-skull", "fa-solid fa-dragon", "fa-solid fa-peace", "fa-solid fa-burger",
+        "fa-solid fa-hippo", "fa-solid fa-ghost", "fa-solid fa-robot"]//<i class=></i>
 
     useEffect(() => {
         const fetchRecipesList = async () => {
@@ -22,14 +26,14 @@ const UserProfile = () => {
             if (response.ok) {
                 setRecipes(json);
                 if (user.collections.length > 0) {
-                    console.log('get fav',user.collections);
+                    console.log('get fav', user.collections);
                     const response = await fetch('/api/recipes/recipes/favorites/', {
                         method: 'POST',
                         headers: { "Content-Type": "application/json" },
                         body: JSON.stringify(user.collections)
                     });
                     const json = await response.json();
-                    console.log('favorites',json);
+                    console.log('favorites', json);
                     setFavorites(json);
                 }
             } else {
@@ -43,13 +47,68 @@ const UserProfile = () => {
         fetchRecipesList();
     }, []);
 
+    const Avatar = async (avatar_img) => {
+        console.log(avatar_img);
+        const response = await fetch('/api/recipes/users/' + user._id, {
+            method: 'PATCH',
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ avatar: avatar_img })
+        });
+        const json = await response.json();
+        if (response.ok) {
+            fetchUser();
+        }
+    }
+
+    const fetchUser = async () => {
+        const response = await fetch('/api/recipes/users/' + user._id);
+        const json = await response.json();
+        console.log('users', json);
+        if (response.ok) {
+            setIsPending(false);
+            setUser({ ...user, avatar: json.avatar });
+        } else {
+            setError(true);
+            console.log(error);
+        }
+    }
+
+    const handleClose = () => {
+        setSettingsWin(false);
+    }
+
+    const handleOpen = () => {
+        setSettingsWin(true);
+        console.log(settings_win);
+    }
+
     return (
         <div className="recipe-details">
-            {isPending && <div>Loading...</div>}
-            {error && <div>Error...</div>}
+            {isPending && <div><i class="fa-solid fa-spinner fa-spin-pulse"></i> Loading...</div>}
+            {error && <div><i class="fa-solid fa-triangle-exclamation fa-beat"></i> Error...</div>}
             {user && (
                 <div>
                     <h2>{user.fname} {user.lname}</h2>
+                    <div className='avatar'>
+                        <i class={user.avatar}></i>
+                    </div>
+                    {!settings_win && <button type="button" style={{
+                        position: "fixed",
+                        right: "0px",
+                        top:"55px"
+                    }} onClick={() => handleOpen()}><i class="fa-solid fa-gear"></i></button>}
+
+                    {settings_win && <div className="settings">
+                        <button type="button" style={{ width: "36px", color: "#000000" }} onClick={() => handleClose()}><i class="fa-regular fa-circle-xmark"></i></button>
+                        <div>
+                            {avatars.map((avatar) => (
+                                <button type="button" onClick={() => Avatar(avatar)}>
+                                    <i class={avatar}></i>
+                                </button>
+                            ))}
+                        </div>
+                    </div>}
+
                     <p><i class="fa-solid fa-envelope"></i> {user.email}</p>
                     <p><i class="fa-solid fa-book"></i> recipes: {user.recipes.length}</p>
                     <p><i class="fa-solid fa-star"></i> favorites: {user.collections.length}</p>
@@ -79,9 +138,9 @@ const UserProfile = () => {
                         //         ))}
                         //     </div></div>
                     }
-                    {(favorites.length > 0) &&<div>
-                       <RecipeList recipes={favorites} title='my favorites' />
-                       </div>
+                    {(favorites.length > 0) && <div>
+                        <RecipeList recipes={favorites} title='my favorites' />
+                    </div>
                     }
 
                 </div>

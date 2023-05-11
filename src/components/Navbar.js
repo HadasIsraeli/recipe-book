@@ -18,6 +18,7 @@ const Navbar = () => {
             fname: "",
             lname: "",
             author: false,
+            avatar:"",
             recipes: [],
             collections: [],
             manager: false

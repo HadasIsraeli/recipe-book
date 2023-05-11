@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 function AddUser({ addUser, error }) {
 
     const [state, setState] = useState({        //variable to save the registration input details
-        
+
         _id: "",
         fname: "",
         lname: "",
@@ -11,6 +11,7 @@ function AddUser({ addUser, error }) {
         recipes: [],
         collections: [],
         email: "",
+        avatar: "fa-solid fa-user",
         password: "",
         manager: false,
         LoggedIn: null,
@@ -52,7 +53,7 @@ function AddUser({ addUser, error }) {
                         <div className="form-group">
                             <label htmlFor="password">Password:</label>
                             <input type="password" name="password" id="password" required onChange={e => setState({ ...state, password: e.target.value })} value={state.password} />
-                        <p>minLength: 6, minLowercase: 1, minUppercase: 1, minNumbers: 1, minSymbols: 1</p>
+                            <p>minLength: 6, minLowercase: 1, minUppercase: 1, minNumbers: 1, minSymbols: 1</p>
                         </div>
                     </div>
                 </div>

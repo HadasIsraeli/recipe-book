@@ -9,7 +9,8 @@ const UsersSchema = new Schema({
     password: { type: String, required: true },
     recipes: { type: Array, required: false },
     collections: { type: Array, required: false },
-    manager: { type: Boolean, required: false }
+    manager: { type: Boolean, required: false },
+    avatar:{ type: String, required: false}
 
 }, { timestamps: true })
 

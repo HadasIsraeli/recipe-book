@@ -46,7 +46,7 @@ function LogInApp() {
                 password: user_found[0].password,
                 manager: user_found[0].manager,
                 LoggedIn: true,
-
+                avatar: user_found[0].avatar
                 //setting the global users details
 
             });

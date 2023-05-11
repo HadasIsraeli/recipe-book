@@ -57,8 +57,8 @@ const Home = () => {
         </form>}
       </div>
 
-      {isPending && <div>Loading...</div>}
-      {error && <div>{error}</div>}
+      {isPending && <div><i class="fa-solid fa-spinner fa-spin-pulse"></i> Loading...</div>}
+      {error && <div><i class="fa-solid fa-triangle-exclamation fa-beat"></i> {error}</div>}
       {recipes && <RecipeList recipes={recipes} title='All Recipes' />}
     </div>
   );

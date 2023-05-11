@@ -381,3 +381,39 @@ i {
 .user p {
   font-weight: 600;
 }
+
+.settings{
+  display: flex;
+  flex-direction: column;
+  background: #e9d7fa;
+  border-radius: 10px;
+  position: absolute;
+  top: 14%;
+  width: 60%;
+  right: 10px;
+}
+
+.settings button {
+  background: #ffffff7d;
+  color:black;
+  border: 0;
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin: 10px;
+}
+
+.avatar{
+  background: #e9d7fa;
+  padding: 10px;
+  border-radius: 100%;
+  width: 100px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.avatar i{
+  font-size: 60px;
+}
