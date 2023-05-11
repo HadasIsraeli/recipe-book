@@ -1,16 +1,14 @@
 body {
   margin: 0;
-  font-family: 'Oswald', sans-serif;
+  font-family: 'Suez One', serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: #333;
+  color: #000000;
 }
 
 code {
-  font-family: 'Oswald', sans-serif;
+  font-family: 'Suez One', serif;
 }
-
-
 
 .footer {
   /* padding: 0px 10px; */
@@ -22,7 +20,7 @@ code {
   border-bottom: 1px solid #f2f2f2;
   position: sticky;
   bottom: 0;
-  background: #ebebeb;
+  background: #ffffff;
   height: 30px;
 }
 
@@ -32,7 +30,7 @@ code {
 }
 
 .navbar {
-  padding: 10px;
+  padding: 10px 20px;
   display: flex;
   align-items: center;
   max-width: 100%;
@@ -43,12 +41,13 @@ code {
   /* background: #e9d7fa; */
   background: white;
   border-radius: 0 0 10px 10px;
-  height: 20px;
-  box-shadow: 0px 5px 5px #dfdfdf73;
+  height: 55px;
+  /* box-shadow: 0px 5px 5px #dfdfdf73; */
 }
 
 .navbar h1 {
-  color: #892be2;
+  color: #A259FF;
+  font-size: 32px;
 }
 
 .navbar .links {
@@ -61,17 +60,19 @@ code {
   margin-left: 16px;
   text-decoration: none;
   padding: 6px;
+  margin: 0px 15px;
+  color:#000000;
 }
 
 .navbar a:hover {
   color: #ffffff;
-  background: #892be27a;
+  background: #A259FF;
   border-radius: 20px;
   padding: 6px;
 }
 
 .navbar button {
-  background: #7f7b8298;
+  background: #A259FF;
   color: #ffffff;
   border: 0;
   padding: 5px;
@@ -82,7 +83,7 @@ code {
 }
 
 .navbar button:hover {
-  background: #892be27a;
+  background: #A259FF;
 }
 
 .content {
@@ -91,6 +92,11 @@ code {
   padding: 20px;
   height: 100%;
   min-height: 100vh;
+}
+.content h1{
+  margin: 10px;
+  border-bottom: 1px solid #c2c2c2;
+  padding-bottom: 10px;
 }
 
 .recipe-preview {
@@ -105,7 +111,7 @@ code {
 
 .recipe-preview h2 {
   font-size: 20px;
-  color: #892be2;
+  color: #A259FF;
   margin-bottom: 8px;
 }
 
@@ -115,7 +121,7 @@ code {
 
 .recipe-details h2 {
   font-size: 20px;
-  color: #892be2;
+  color: #A259FF;
   margin-bottom: 10px;
 }
 
@@ -129,7 +135,7 @@ code {
 }
 
 .recipe-details button {
-  background: #892be298;
+  background: #A259FF;
   color: #ffffff;
   border: 0;
   padding: 8px;
@@ -139,29 +145,31 @@ code {
 }
 
 .recipe-details button:hover {
-  box-shadow: 1px 3px 5px #892be273;
+  box-shadow: 1px 3px 5px #A259FF;
 }
 
 .create {
   max-width: 600px;
-  margin: 0 auto;
+  margin: 30px auto;
   text-align: center;
   display: flex;
   justify-content: space-between;
   background: #e9d7fa59;
   padding: 10px;
   border-radius: 10px;
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 8px 16px 0px #eee;
+  border: 1px solid #eee;
 }
 
 .create label {
   text-align: left;
   display: block;
+  font-weight: 600;
 }
 
 .create h2 {
   font-size: 20px;
-  color: #892be2;
+  color: #A259FF;
   margin-bottom: 30px;
 }
 
@@ -178,13 +186,14 @@ code {
   border: 1px solid #ddd;
   box-sizing: border-box;
   display: block;
+  border-radius: 20px;
 }
 
 .create button {
-  background: #892be298;
+  background: #A259FF;
   color: #ffffff;
   border: 0;
-  padding: 8px;
+  padding: 8px 10px;
   border-radius: 8px;
   cursor: pointer;
   height: 30px;
@@ -192,7 +201,7 @@ code {
 }
 
 .create button:hover {
-  box-shadow: 1px 3px 5px #892be273;
+  box-shadow: 1px 3px 5px #A259FF;
 }
 
 .search {
@@ -211,7 +220,7 @@ code {
 }
 
 .search button {
-  background: #892be298;
+  background: #A259FF;
   color: #ffffff;
   border: 0;
   padding: 8px;
@@ -256,12 +265,15 @@ i {
   flex-direction: column;
   justify-content: space-between;
   border-radius: 20px;
+  color:#000000;
+  border: 1px solid #E6E6E6;
 }
 
 .polaroid-card:hover {
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
   background: #8a2be230;
   transform: scale(1.05);
+  color: white !important;
 }
 
 .image-container {
@@ -280,31 +292,27 @@ i {
 }
 
 .caption-container {
-  text-align: center;
+  text-align: right;
   height: 20%;
-  padding-top: 20px;
+  padding: 20px;
 }
 
 .caption-container h2 {
   margin-top: 0;
   margin-bottom: 10px;
   font-size: 20px;
-  color: black;
+  /* color: black; */
 }
 
 .caption-container p {
   margin: 0;
   font-size: 12px;
-  color: black;
+  /* color: black; */
 }
 
 .caption-container i {
   font-size: 60px;
   margin: 20px 0px;
-}
-
-.caption-container:hover {
-  color: #892be2
 }
 
 .recipe-card {
@@ -336,7 +344,7 @@ i {
 }
 
 .dropdown button:hover {
-  background: #892be27a;
+  background: #A259FF7a;
 }
 
 .dropdown-content {
@@ -359,7 +367,7 @@ i {
 
 .dropdown-content a:hover {
   background-color: #dddddd00;
-  color: #892be2;
+  color: #A259FF;
 }
 
 .dropdown:hover .dropdown-content {
@@ -373,7 +381,7 @@ i {
 
 .logout-btn:hover {
   background-color: #dddddd00 !important;
-  color: #892be2 !important;
+  color: #A259FF !important;
 }
 
 .user {

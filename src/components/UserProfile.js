@@ -90,32 +90,37 @@ const UserProfile = () => {
             {error && <div><i class="fa-solid fa-triangle-exclamation fa-beat"></i> Error...</div>}
             {user && (
                 <div>
-                    <h2>{user.fname} {user.lname}</h2>
-                    <div className='avatar'>
-                        <i class={user.avatar}></i>
-                    </div>
-                    {!settings_win && <button type="button" style={{
-                        position: "fixed",
-                        right: "0px",
-                        top:"55px"
-                    }} onClick={() => handleOpen()}><i class="fa-solid fa-gear"></i></button>}
-
-                    {settings_win && <div className="settings">
-                        <button type="button" style={{ width: "36px", color: "#000000" }} onClick={() => handleClose()}><i class="fa-regular fa-circle-xmark"></i></button>
+                    <h2 style={{"font-size":"32px"}}>{user.fname} {user.lname}</h2>
+                    <div style={{display:"flex"}}>
                         <div>
-                            {avatars.map((avatar) => (
-                                <button type="button" onClick={() => Avatar(avatar)}>
-                                    <i class={avatar}></i>
-                                </button>
-                            ))}
+                            <div className='avatar'>
+                                <i class={user.avatar}></i>
+                            </div>
+                            {!settings_win && <button type="button" style={{
+                                position: "revert",
+                                left: "10px",
+                                "font-size": "10px",
+                                
+                            }} onClick={() => handleOpen()}><i class="fa-solid fa-images"></i></button>}
                         </div>
-                    </div>}
-
-                    <p><i class="fa-solid fa-envelope"></i> {user.email}</p>
-                    <p><i class="fa-solid fa-book"></i> recipes: {user.recipes.length}</p>
-                    <p><i class="fa-solid fa-star"></i> favorites: {user.collections.length}</p>
-                    {user.author && <p><i class="fa-solid fa-pen"></i> author</p>}
-                    {user.manager && <p><i class="fa-sharp fa-solid fa-user-tie"></i> manager</p>}
+                        {settings_win && <div className="settings">
+                            <button type="button" style={{ width: "36px", color: "#000000" }} onClick={() => handleClose()}><i class="fa-regular fa-circle-xmark"></i></button>
+                            <div>
+                                {avatars.map((avatar) => (
+                                    <button type="button" onClick={() => Avatar(avatar)}>
+                                        <i class={avatar}></i>
+                                    </button>
+                                ))}
+                            </div>
+                        </div>}
+                        <div>
+                            <p><i class="fa-solid fa-envelope"></i> {user.email}</p>
+                            <p><i class="fa-solid fa-book"></i> recipes: {user.recipes.length}</p>
+                            <p><i class="fa-solid fa-star"></i> favorites: {user.collections.length}</p>
+                            {user.author && <p><i class="fa-solid fa-pen"></i> author</p>}
+                            {user.manager && <p><i class="fa-sharp fa-solid fa-user-tie"></i> manager</p>}
+                        </div>
+                    </div>
                     {(recipes.length > 0) &&
                         <RecipeList recipes={recipes} title='my recipes' />
 

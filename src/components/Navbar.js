@@ -57,7 +57,7 @@ const Navbar = () => {
         return (
             <nav className="navbar">
                 <h1>The MerimIsraeli Recipe Book</h1>
-                <div className="h1">USER page</div>
+                {/* <div className="h1">USER page</div> */}
                 <div className="links">
                     <Link to="/"><i class="fa-solid fa-house"></i></Link>
                 </div>
@@ -85,7 +85,7 @@ const Navbar = () => {
         return (
             <nav className="navbar">
                 <h1>The MerimIsraeli Recipe Book</h1>
-                <div className="h1">USER author page</div>
+                {/* <div className="h1">USER author page</div> */}
                 <div className="links">
                     <Link to="/"><i class="fa-solid fa-house"></i></Link>
                     <Link to="/create"><i class="fa-solid fa-plus"></i></Link>
