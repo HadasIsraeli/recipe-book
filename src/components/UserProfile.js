@@ -20,6 +20,7 @@ const UserProfile = () => {
 
     useEffect(() => {
         const fetchRecipesList = async () => {
+            setIsPending(true);
             const response = await fetch('/api/recipes/userrecipes/' + user._id);
             const json = await response.json();
             console.log("recipes", json);
@@ -36,8 +37,9 @@ const UserProfile = () => {
                     console.log('favorites', json);
                     setFavorites(json);
                 }
+                setIsPending(false);
             } else {
-                // setError(true);
+                setError(true);
                 console.log(error);
             }
         }

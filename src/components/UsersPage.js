@@ -9,6 +9,7 @@ const UsersPage = () => {
     const [isPending, setIsPending] = useState(false);
     const [error, setError] = useState(null);
     useEffect(() => {
+        setIsPending(true);
         const fetchAuthorsList = async () => {
             const response = await fetch('/api/recipes/users');
             const json = await response.json();
@@ -29,7 +30,7 @@ const UsersPage = () => {
     return (<div className="recipe-list">
         <h1>Users</h1>
         <div className="recipe-card">
-            {isPending && <div>Loading...</div>}
+            {isPending && <div><i class="fa-solid fa-spinner fa-spin-pulse"></i> Loading...</div>}
             {error && <div>Error...</div>}
             {users.map((user) => (
                 <NavLink to={`/user/${user._id}`} style={{ textDecoration: 'none' }}>
@@ -41,11 +42,16 @@ const UsersPage = () => {
                     </div> */}
                         <div className="caption-container">
                             <h2>{user.fname} {user.lname}</h2>
-                            <p>{user.email}</p>
-                            <p>recipes: {user.recipes.length}</p>
-                            <p>collections: {user.collections.length}</p>
-                            {user.author && <p>author</p>}
-                            {user.manager && <p>manager</p>}
+                            <div>
+                                <i class={user.avatar}></i>
+                            </div>
+                            <div classnAME="user-data">
+                                <p>{user.email}</p>
+                                <p>recipes: {user.recipes.length}</p>
+                                <p>collections: {user.collections.length}</p>
+                                {user.author && <p>author</p>}
+                                {user.manager && <p>manager</p>}
+                            </div>
                         </div>
 
                     </div>

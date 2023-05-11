@@ -298,6 +298,15 @@ i {
   color: black;
 }
 
+.caption-container i {
+  font-size: 60px;
+  margin: 20px 0px;
+}
+
+.caption-container:hover {
+  color: #892be2
+}
+
 .recipe-card {
   display: flex;
   flex-wrap: wrap;
@@ -382,7 +391,7 @@ i {
   font-weight: 600;
 }
 
-.settings{
+.settings {
   display: flex;
   flex-direction: column;
   background: #e9d7fa;
@@ -395,7 +404,7 @@ i {
 
 .settings button {
   background: #ffffff7d;
-  color:black;
+  color: black;
   border: 0;
   padding: 8px;
   border-radius: 8px;
@@ -403,7 +412,7 @@ i {
   margin: 10px;
 }
 
-.avatar{
+.avatar {
   background: #e9d7fa;
   padding: 10px;
   border-radius: 100%;
@@ -414,6 +423,6 @@ i {
   justify-content: center;
 }
 
-.avatar i{
+.avatar i {
   font-size: 60px;
 }

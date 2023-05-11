@@ -78,7 +78,7 @@ const RecipeDetails = () => {
 
     return (
         <div className="recipe-details">
-            {isPending && <div>Loading...</div>}
+            {isPending && <div><i class="fa-solid fa-spinner fa-spin-pulse"></i> Loading...</div>}
             {error && <div>Error...</div>}
             {recipe && (
                 <article>

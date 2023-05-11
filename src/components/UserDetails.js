@@ -81,11 +81,14 @@ const UserDetails = () => {
 
     return (
         <div className="recipe-details">
-            {isPending && <div>Loading...</div>}
+            {isPending && <div><i class="fa-solid fa-spinner fa-spin-pulse"></i> Loading...</div>}
             {error && <div>Error...</div>}
             {user && (
                 <div>
                     <h2>{user.fname} {user.lname}</h2>
+                    <div className='avatar'>
+                        <i class={user.avatar}></i>
+                    </div>
                     <p><i class="fa-solid fa-envelope"></i> {user.email}</p>
                     <p><i class="fa-solid fa-book"></i> recipes: {user.recipes.length}</p>
                     <p><i class="fa-solid fa-star"></i> favorites: {user.collections.length}</p>
