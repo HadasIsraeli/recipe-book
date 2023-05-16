@@ -69,7 +69,7 @@ const RecipeDetails = () => {
         console.log('users', json);
         if (response.ok) {
             // setIsPending(false);
-            setUser({...user,collections:json.collections});
+            setUser({ ...user, collections: json.collections });
         } else {
             // setError(true);
             console.log(error);
@@ -90,8 +90,8 @@ const RecipeDetails = () => {
                     {!recipe.img && <img src="https://handletheheat.com/wp-content/uploads/2015/03/Best-Birthday-Cake-with-milk-chocolate-buttercream-SQUARE.jpg"
                         alt="your-image-description" />}
                     {recipe.img && <img src={recipe.img} alt={recipe.title} />}
-
-                    {recipe.temp && <h5>Oven Temperature: {recipe.temp} C</h5>}
+                    <br />
+                    <h5>Oven Temperature: {recipe.temp} C</h5>
                     <h5>Total Time: {recipe.time} min</h5>
                     <h4>Ingredients:</h4>
                     <div>{recipe.ingredients.map(item => <li>{item}</li>)}</div>

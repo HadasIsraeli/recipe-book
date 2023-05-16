@@ -44,10 +44,17 @@ const Home = () => {
 
   return (
     <div className="home">
-      {!search_win && <button className="search-btn" onClick={() => handleOpen()}><i class="fa-solid fa-magnifying-glass"></i></button>}
+      {isPending && <div><i class="fa-solid fa-spinner fa-spin-pulse"></i> Loading...</div>}
+      {error && <div><i class="fa-solid fa-triangle-exclamation fa-beat"></i> {error}</div>}
+
+      <div>
+        {!search_win && <button className="search-btn" onClick={() => handleOpen()}><i class="fa-solid fa-magnifying-glass"></i></button>}
+        {recipes && <RecipeList recipes={recipes} title='All Recipes' />}
+      </div>
+
       <div>
         {search_win && <form className="search" onSubmit={hanndleSubmit}>
-          <button type="button" style={{ background: "#892be200", color: "#711bb3" }} onClick={() => handleClose()}><i class="fa-regular fa-circle-xmark"></i></button>
+          <button type="button" style={{ background: "#892be200", color: "black" }} onClick={() => handleClose()}><i class="fa-regular fa-circle-xmark"></i></button>
           <div>
             <input type="text" name="search" value={search} placeholder="search recipe title..." onChange={(e) => SetSearch(e.target.value)} />
             <button type="submit">Search</button>
@@ -57,9 +64,6 @@ const Home = () => {
         </form>}
       </div>
 
-      {isPending && <div><i class="fa-solid fa-spinner fa-spin-pulse"></i> Loading...</div>}
-      {error && <div><i class="fa-solid fa-triangle-exclamation fa-beat"></i> {error}</div>}
-      {recipes && <RecipeList recipes={recipes} title='All Recipes' />}
     </div>
   );
 }

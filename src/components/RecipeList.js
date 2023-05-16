@@ -17,7 +17,7 @@ const RecipeList = ({ recipes, title }) => {
                             </div>
                             <div className="caption-container">
                                 <h2>{recipe.title}</h2>
-                                <p>Written by: {recipe.author}</p>
+                                <p>{recipe.author}</p>
                             </div>
 
                         </div>

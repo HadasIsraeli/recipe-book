@@ -10,6 +10,11 @@ code {
   font-family: 'Suez One', serif;
 }
 
+.content {
+  position: relative;
+  z-index: 1;
+}
+
 .footer {
   /* padding: 0px 10px; */
   display: flex;
@@ -42,6 +47,8 @@ code {
   background: white;
   border-radius: 0 0 10px 10px;
   height: 55px;
+  z-index: 9;
+  position: sticky;
   /* box-shadow: 0px 5px 5px #dfdfdf73; */
 }
 
@@ -61,7 +68,7 @@ code {
   text-decoration: none;
   padding: 6px;
   margin: 0px 15px;
-  color:#000000;
+  color: #000000;
 }
 
 .navbar a:hover {
@@ -93,7 +100,8 @@ code {
   height: 100%;
   min-height: 100vh;
 }
-.content h1{
+
+.content h1 {
   margin: 10px;
   border-bottom: 1px solid #c2c2c2;
   padding-bottom: 10px;
@@ -205,7 +213,7 @@ code {
 }
 
 .search {
-  background: #e9d7fa;
+  background: #f2f2f2;
   padding: 15px 10px;
   margin: 10px 0;
   border: 1px solid #ddd;
@@ -214,9 +222,9 @@ code {
   box-shadow: 1px 3px 5px #b7b7b773;
   border-radius: 8px;
   min-height: 300px;
-  transform: translate(4%, -25px);
-  left: 0%;
-  z-index: 1;
+  left: 20px;
+  z-index: 3;
+  top: 20px;
 }
 
 .search button {
@@ -228,6 +236,17 @@ code {
   cursor: pointer;
   height: 30px;
   margin: 10px;
+  position: inherit;
+  right: 10px;
+  top: 10px;
+}
+
+.search input {
+  border-radius: 20px;
+  width: 200px;
+  height: 30px;
+  border: 1px solid #E6E6E6;
+  padding: 5px 15px;
 }
 
 .search-btn {
@@ -238,9 +257,8 @@ code {
   cursor: pointer;
   height: 30px;
   margin: 10px;
-  position: fixed;
-  left: 50%;
-  top: -5px;
+  position: absolute;
+  right: 10px;
 }
 
 i {
@@ -258,15 +276,14 @@ i {
   background-color: white;
   transition: 0.3s;
   width: 200px;
-  height: 270px;
+  height: 240px;
   margin: 10px;
-  padding-bottom: 15px;
+  /* padding-bottom: 15px; */
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
   border-radius: 20px;
-  color:#000000;
+  color: #000000;
   border: 1px solid #E6E6E6;
+  flex-direction: column;
 }
 
 .polaroid-card:hover {
@@ -280,21 +297,27 @@ i {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 80%;
+  height: 100%;
+  z-index: 1;
+  position: relative;
 }
 
 .image-container img {
-  /* width: 100%;
-  height: auto; */
   border-radius: 20px;
   width: 200px;
-  height: 200px;
+  height: 240px;
 }
 
 .caption-container {
   text-align: right;
-  height: 20%;
-  padding: 20px;
+  max-height: 20%;
+  padding: 10px 20px;
+  background: #fdfdfd73;
+  z-index: 2;
+  position: absolute;
+  width: 160px;
+  margin-top: 173px;
+  border-radius: 0 0 20px 20px;
 }
 
 .caption-container h2 {
@@ -335,7 +358,7 @@ i {
   height: 30px;
   width: 30px;
   border-radius: 100%;
-  background: #7f7b8298;
+  background: #ffffff98;
   color: #ffffff;
   border: 0;
   padding: 5px;
@@ -344,14 +367,14 @@ i {
 }
 
 .dropdown button:hover {
-  background: #A259FF7a;
+  background: #A259FF;
 }
 
 .dropdown-content {
   display: none;
   position: fixed;
   transform: translateX(-35px);
-  background-color: #f1f1f100;
+  background-color: #ffffff;
   min-width: 80px;
   border-radius: 10px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
