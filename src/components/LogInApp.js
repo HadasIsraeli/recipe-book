@@ -35,7 +35,7 @@ function LogInApp() {
         let user_found = users.filter(user => user.email == details.email && user.password == details.password)
         console.log('user_found', user_found);
         if (user_found.length > 0) {
-            setUser({
+            const data = {
                 _id: user_found[0]._id,
                 fname: user_found[0].fname,
                 lname: user_found[0].lname,
@@ -43,13 +43,13 @@ function LogInApp() {
                 recipes: user_found[0].recipes,
                 collections: user_found[0].collections,
                 email: user_found[0].email,
-                password: user_found[0].password,
+                // password: user_found[0].password,
                 manager: user_found[0].manager,
                 LoggedIn: true,
                 avatar: user_found[0].avatar
-                //setting the global users details
-
-            });
+            }
+            setUser(data);
+            window.localStorage.setItem("user", JSON.stringify(data));
             console.log('MATCH', user);
             history.push('/');
         }

@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { LoggedContext } from '../LoggedInUser';
 import { useHistory } from "react-router-dom";
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import profile_user from '../assets/profile_user.png'
 
 const Navbar = () => {
@@ -11,18 +11,28 @@ const Navbar = () => {
     console.log('NAVBAR', user, user.manager, logged_in);
     const history = useHistory();
 
+    useEffect(() => {
+        const data = window.localStorage.getItem('user');
+        console.log('users data local storage:', JSON.parse(data));
+        setUser(JSON.parse(data));
+    }, []);
+
+  
+
     const Logout = () => {      //set global user details to first state and logout
-        setUser({
+        const data = {
             LoggedIn: false,
             _id: "",
             fname: "",
             lname: "",
             author: false,
-            avatar:"",
+            avatar: "",
             recipes: [],
             collections: [],
             manager: false
-        });
+        };
+        setUser(data);
+        window.localStorage.setItem("user", JSON.stringify(data));
         history.push('/'); //sends the user to login page
     }
 
@@ -47,7 +57,7 @@ const Navbar = () => {
                         </div>
                         <Link to="/UserProfile"><i class="fa-solid fa-address-card"></i></Link>
                         <button className="logout-btn" onClick={Logout}>
-                        <i class="fa-solid fa-right-from-bracket"></i>
+                            <i class="fa-solid fa-right-from-bracket"></i>
                         </button>
                     </div>
                 </div>
@@ -72,7 +82,7 @@ const Navbar = () => {
                         </div>
                         <Link to="/UserProfile"><i class="fa-solid fa-address-card"></i></Link>
                         <button className="logout-btn" onClick={Logout}>
-                        <i class="fa-solid fa-right-from-bracket"></i>
+                            <i class="fa-solid fa-right-from-bracket"></i>
                         </button>
                     </div>
                 </div>
@@ -101,7 +111,7 @@ const Navbar = () => {
                         </div>
                         <Link to="/UserProfile"><i class="fa-solid fa-address-card"></i></Link>
                         <button className="logout-btn" onClick={Logout}>
-                        <i class="fa-solid fa-right-from-bracket"></i>
+                            <i class="fa-solid fa-right-from-bracket"></i>
                         </button>
                     </div>
                 </div>

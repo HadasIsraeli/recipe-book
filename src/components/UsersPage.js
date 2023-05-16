@@ -1,13 +1,23 @@
 // import useFetch from './useFetch';
 import { NavLink } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useState,useContext } from "react";
+import { LoggedContext } from '../LoggedInUser';
+
 
 const UsersPage = () => {
     // const { data: users, error, isPending } = useFetch('/api/recipes/users');
+    const { user, setUser } = useContext(LoggedContext);
 
     const [users, setUsers] = useState([]);
     const [isPending, setIsPending] = useState(false);
     const [error, setError] = useState(null);
+
+    // useEffect(() => {
+    //     const data = window.localStorage.getItem('user');
+    //     console.log('users data local storage:',JSON.parse(data));
+    //     setUser(JSON.parse(data));
+    // }, []);
+
     useEffect(() => {
         setIsPending(true);
         const fetchAuthorsList = async () => {
@@ -35,22 +45,25 @@ const UsersPage = () => {
             {users.map((user) => (
                 <NavLink to={`/user/${user._id}`} style={{ textDecoration: 'none' }}>
                     <div className="polaroid-card" key={user._id} >
-                        {/* <div className="image-container">
-                        {!user.img && <img src="https://handletheheat.com/wp-content/uploads/2015/03/Best-Birthday-Cake-with-milk-chocolate-buttercream-SQUARE.jpg"
+                        <div className="image-container">
+                            {/* {!user.img && <img src="https://handletheheat.com/wp-content/uploads/2015/03/Best-Birthday-Cake-with-milk-chocolate-buttercream-SQUARE.jpg"
                             alt="your-image-description" />}
-                        {user.img && <img src={user.img} alt={user.title} />}
-                    </div> */}
-                        <div className="caption-container">
-                            <h2>{user.fname} {user.lname}</h2>
+                        {user.img && <img src={user.img} alt={user.title} />} */}
                             <div>
                                 <i class={user.avatar}></i>
                             </div>
+                        </div>
+                        <div className="caption-container">
+                            <h2>{user.fname} {user.lname}</h2>
+                            {/* <div>
+                                <i class={user.avatar}></i>
+                            </div> */}
                             <div classnAME="user-data">
                                 <p>{user.email}</p>
-                                <p>recipes: {user.recipes.length}</p>
+                                {/* <p>recipes: {user.recipes.length}</p>
                                 <p>collections: {user.collections.length}</p>
                                 {user.author && <p>author</p>}
-                                {user.manager && <p>manager</p>}
+                                {user.manager && <p>manager</p>} */}
                             </div>
                         </div>
 

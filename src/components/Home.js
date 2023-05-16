@@ -14,6 +14,16 @@ const Home = () => {
   const [search, SetSearch] = useState('');
   const [search_win, setSearchWin] = useState(null);
 
+  // useEffect(() => {
+  //   const data = window.localStorage.getItem('user');
+  //   console.log('users data local storage:', JSON.parse(data));
+  //   setUser(JSON.parse(data)); 
+  // }, []);
+
+  // useEffect(() => {
+  //   window.localStorage.setItem("user", JSON.stringify(user));
+  // })
+
   const hanndleSubmit = async (e) => {
     e.preventDefault();
     setRecipesRes([]);

@@ -68,7 +68,7 @@ function Register() {
                 const user = {
                     lname: new_user.lname,
                     fname: new_user.fname,
-                    password: new_user.password,
+                    // password: new_user.password,
                     email: new_user.email,
                     manager: false,
                     author: false,
@@ -84,6 +84,7 @@ function Register() {
                 }).then(() => {
                     setIsPending(false);
                     setUser(new_user);
+                    window.localStorage.setItem("user", JSON.stringify(new_user));
                     history.push('/');
                 });
 
