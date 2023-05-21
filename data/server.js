@@ -18,6 +18,11 @@ app.use((req, res, next) => {
 
 app.use('/api/recipes', recipesRoutes);
 
+//to show the uploaded img
+app.use('/uploads', express.static('uploads'));
+app.use('/recipes/uploads', express.static('uploads'));
+
+
 mongoose.connect(process.env.URI_MONGO)
     .then(() => {
         app.listen(process.env.PORT, () => {

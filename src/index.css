@@ -64,17 +64,19 @@ code {
 }
 
 .navbar a {
-  margin-left: 16px;
   text-decoration: none;
   padding: 6px;
   margin: 0px 15px;
   color: #000000;
+  width: 45px;
+  display: flex;
+  justify-content: center;
 }
 
 .navbar a:hover {
   color: #ffffff;
   background: #A259FF;
-  border-radius: 20px;
+  border-radius: 10px;
   padding: 6px;
 }
 

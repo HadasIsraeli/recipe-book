@@ -1,4 +1,5 @@
 const express = require('express');
+const upload = require('../middleware/upload');
 const { createRecipe, getAllRecipes, getRecipe, deleteRecipe, updateRecipe, 
     getUser, getUsers, createUser, deleteUser, updateUser,getAuthors,getUserRecipes,
     getSearchRecipes,addToCollection,deleteFromCollection,getfavorites } = require('../controllers/recipeControllers');
@@ -17,7 +18,7 @@ router.get('/userrecipes/:id', getUserRecipes);
 
 router.get('/searchrecipes/:id', getSearchRecipes);
 
-router.post('/recipes', createRecipe);
+router.post('/recipes',upload.single('img'), createRecipe);
 
 router.delete('/recipes/:id', deleteRecipe);
 

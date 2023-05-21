@@ -33,20 +33,38 @@ const getSearchRecipes = async (req, res) => {
 }
 
 const createRecipe = async (req, res) => {
+    console.log('req.body:',req.body);
     const { title, body, author, ingredients, note, time, temp, img, author_id } = req.body;
-
-    try {
-        const recipe = await Recipe.create({ title, body, author, ingredients, note, time, temp, img, author_id })
-            .then(async result => {
-                console.log(result, result._id.toString());
-                await updateUser({ params: { id: author_id }, body: { $push: { recipes: result._id.toString() } } });
-                res.status(200).json(recipe);
-            }, err => {
-                console.log(err);
-                res.status(400).json({ error: error.message });
-            });
-    } catch (error) {
-        res.status(400).json({ error: error.message });
+    if (req.file) {
+        console.log('req.file',req.file);
+        const file = req.file.path;
+        try {
+            const recipe = await Recipe.create({ title, body, author, ingredients, note, time, temp, img:file, author_id })
+                .then(async result => {
+                    // console.log(result, result._id.toString());
+                    await updateUser({ params: { id: author_id }, body: { $push: { recipes: result._id.toString() } } });
+                    res.status(200).json(recipe);
+                }, err => {
+                    console.log(err);
+                    res.status(400).json({ error: error.message });
+                });
+        } catch (error) {
+            res.status(400).json({ error: error.message });
+        }
+    } else {
+        try {
+            const recipe = await Recipe.create({ title, body, author, ingredients, note, time, temp, img, author_id })
+                .then(async result => {
+                    console.log(result, result._id.toString());
+                    await updateUser({ params: { id: author_id }, body: { $push: { recipes: result._id.toString() } } });
+                    res.status(200).json(recipe);
+                }, err => {
+                    console.log(err);
+                    res.status(400).json({ error: error.message });
+                });
+        } catch (error) {
+            res.status(400).json({ error: error.message });
+        }
     }
 }
 
@@ -199,7 +217,7 @@ const getfavorites = async (req, res) => {
         const allUsersRecipes = await Recipe.find({ _id: element });
         favorites.push(allUsersRecipes[0]);
         // console.log(index,allUsersRecipes[0]);
-        if (index == req.body.length-1&&favorites.length==req.body.length) {
+        if (index == req.body.length - 1 && favorites.length == req.body.length) {
             // console.log('favorites',favorites,index);
             res.status(200).json(favorites);
         }

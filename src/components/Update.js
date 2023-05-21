@@ -15,7 +15,8 @@ const Update = () => {
         ingredients: [],
         note: '',
         time: '',
-        temp: ''
+        temp: '',
+        img:''
     });
     const [isPending, setIsPending] = useState(true);
     const [error, setError] = useState(null);
@@ -47,6 +48,7 @@ const Update = () => {
                 setTime(json.time);
                 setTemp(json.temp);
                 setNote(json.note);
+                setImg(json.img);
             } else {
                 setError(true);
                 console.log(error);
@@ -62,8 +64,9 @@ const Update = () => {
 
     const hanndleSubmit = (e) => {
         e.preventDefault();
+        const updated_recipe = { title, body, author, ingredients, note, time, temp };
 
-        const updated_recipe = { title, body, author, ingredients, note, time, temp, img };
+        // const updated_recipe = { title, body, author, ingredients, note, time, temp, img };
         setIsPending(true);
         fetch('/api/recipes/recipes/' + id, {
             method: 'PATCH',
@@ -90,12 +93,12 @@ const Update = () => {
         setIngredients(arr);
     }
 
-    const handleFileUpload = async (e) => {
-        // setImage(e.target.files[0])
-        const base64 = await ConverToBase64(e.target.files[0]);
-        setImg(base64);
-        console.log(base64);
-    }
+    // const handleFileUpload = async (e) => {
+    //     // setImage(e.target.files[0])
+    //     const base64 = await ConverToBase64(e.target.files[0]);
+    //     setImg(base64);
+    //     console.log(base64);
+    // }
 
     return (
         <div className="create">
@@ -125,12 +128,11 @@ const Update = () => {
                     <textarea name="content" required
                         value={body} onChange={(e) => setBody(e.target.value)} />
 
-                    <label>
+                    {/* <label>
                         Image:
                         <input type="file" name="imgfile" accept=".jpeg,.png,.jpg" onChange={handleFileUpload} />
-                        {/* <button type="button" onClick={handleAddImg}>add img</button> */}
-                    </label>
-                        {img && <img src={img} alt={title} />}
+                    </label> */}
+                        {/* {img && <img src={img} alt={title} />} */}
 
                     <label>Notes:</label>
                     <textarea name="note"
@@ -149,7 +151,7 @@ const Update = () => {
                 </form>
             </div>
             <div>
-                <img src={recipe.img} alt={recipe.title} />
+                {recipe.img&&<img src={recipe.img} alt={recipe.title} />}
                 {(ingredients.length > 0) && <h4>Ingredients:</h4>}
                 <div>{ingredients.map((ingredient) => (
                     <div className="edit-ingredients">
@@ -164,15 +166,15 @@ const Update = () => {
 
 export default Update;
 
-function ConverToBase64(file) {
-    return new Promise((resolve, reject) => {
-        const fileReader = new FileReader();
-        fileReader.readAsDataURL(file);
-        fileReader.onload = () => {
-            resolve(fileReader.result);
-        }
-        fileReader.onerror = (err) => {
-            reject(err);
-        }
-    })
-}
+// function ConverToBase64(file) {
+//     return new Promise((resolve, reject) => {
+//         const fileReader = new FileReader();
+//         fileReader.readAsDataURL(file);
+//         fileReader.onload = () => {
+//             resolve(fileReader.result);
+//         }
+//         fileReader.onerror = (err) => {
+//             reject(err);
+//         }
+//     })
+// }
