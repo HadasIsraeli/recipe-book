@@ -12,7 +12,6 @@ function LoginForm({ Login, error }) {
 
     const submitHandler = e => {//send the login input details to LoginApp component when submit
         e.preventDefault();
-        console.log('LOGING', e, details);
         Login(details);
     }
 

@@ -1,12 +1,10 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-// import useFetch from './useFetch';
 import { useHistory } from "react-router-dom";
 
 const Update = () => {
 
     const { id } = useParams();
-    // let { data: recipe, error, isPending } = useFetch('/api/recipes/' + id);
 
     const [recipe, setRecipe] = useState({
         title: '',
@@ -16,7 +14,7 @@ const Update = () => {
         note: '',
         time: '',
         temp: '',
-        img:''
+        img: ''
     });
     const [isPending, setIsPending] = useState(true);
     const [error, setError] = useState(null);
@@ -36,11 +34,9 @@ const Update = () => {
         const fetchRecipe = async () => {
             const response = await fetch('/api/recipes/recipes/' + id);
             const json = await response.json();
-            console.log('fetched recipe', json);
             if (response.ok) {
                 setIsPending(false);
                 setRecipe(json);
-                console.log('recipe', recipe, json);
                 setTitle(json.title);
                 setAuthor(json.author);
                 setBody(json.body);
@@ -51,7 +47,6 @@ const Update = () => {
                 setImg(json.img);
             } else {
                 setError(true);
-                console.log(error);
             }
         }
 
@@ -60,13 +55,11 @@ const Update = () => {
 
 
     const history = useHistory();
-    // let authors_name = ['Hadas', 'Inbar', 'Sarah'];
 
     const hanndleSubmit = (e) => {
         e.preventDefault();
         const updated_recipe = { title, body, author, ingredients, note, time, temp };
 
-        // const updated_recipe = { title, body, author, ingredients, note, time, temp, img };
         setIsPending(true);
         fetch('/api/recipes/recipes/' + id, {
             method: 'PATCH',
@@ -82,7 +75,6 @@ const Update = () => {
         if (item !== '') {
             setIngredients([...ingredients, item]);
             setItem('');
-            console.log('added item!', ingredients);
         } else {
             alert('Sorry, the ingredient is empty!');
         }
@@ -92,13 +84,6 @@ const Update = () => {
         let arr = ingredients.filter(ing => ing !== ingredient);
         setIngredients(arr);
     }
-
-    // const handleFileUpload = async (e) => {
-    //     // setImage(e.target.files[0])
-    //     const base64 = await ConverToBase64(e.target.files[0]);
-    //     setImg(base64);
-    //     console.log(base64);
-    // }
 
     return (
         <div className="create">
@@ -132,26 +117,21 @@ const Update = () => {
                         Image:
                         <input type="file" name="imgfile" accept=".jpeg,.png,.jpg" onChange={handleFileUpload} />
                     </label> */}
-                        {/* {img && <img src={img} alt={title} />} */}
+                    {/* {img && <img src={img} alt={title} />} */}
 
                     <label>Notes:</label>
                     <textarea name="note"
                         value={note} onChange={(e) => setNote(e.target.value)} />
 
                     <label>Recipe author: {author}</label>
-                    {/* <select name="author"
-                        value={author} onChange={(e) => setAuthor(e.target.value)}>
-                        {authors_name.map((author) => (
-                            <option value="author">{author}</option>
-                        ))}
-                    </select> */}
+
                     {!isPending && (ingredients.length > 0) && <button type="submit">Update Recipe</button>}
                     {isPending && <button disabled>Updating Recipe...</button>}
 
                 </form>
             </div>
             <div>
-                {recipe.img&&<img src={recipe.img} alt={recipe.title} />}
+                {recipe.img && <img src={recipe.img} alt={recipe.title} />}
                 {(ingredients.length > 0) && <h4>Ingredients:</h4>}
                 <div>{ingredients.map((ingredient) => (
                     <div className="edit-ingredients">
@@ -165,16 +145,3 @@ const Update = () => {
 }
 
 export default Update;
-
-// function ConverToBase64(file) {
-//     return new Promise((resolve, reject) => {
-//         const fileReader = new FileReader();
-//         fileReader.readAsDataURL(file);
-//         fileReader.onload = () => {
-//             resolve(fileReader.result);
-//         }
-//         fileReader.onerror = (err) => {
-//             reject(err);
-//         }
-//     })
-// }

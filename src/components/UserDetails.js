@@ -20,14 +20,12 @@ const UserDetails = () => {
         const fetchAuthorsList = async () => {
             const response = await fetch('/api/recipes/users/' + id);
             const json = await response.json();
-            console.log(json);
             if (response.ok) {
                 setIsPending(false);
                 setUser(json);
                 fetchRecipesList();
             } else {
                 setError(true);
-                console.log(error);
             }
         }
 
@@ -37,12 +35,10 @@ const UserDetails = () => {
     const fetchRecipesList = async () => {
         const response = await fetch('/api/recipes/userrecipes/' + id);
         const json = await response.json();
-        console.log("recipes", json);
         if (response.ok) {
             setRecipes(json);
         } else {
             // setError(true);
-            console.log(error);
         }
     }
 
@@ -61,13 +57,11 @@ const UserDetails = () => {
     const fetchUser = async () => {
         const response = await fetch('/api/recipes/users/' + user._id);
         const json = await response.json();
-        console.log('users', json);
         if (response.ok) {
             // setIsPending(false);
-            setUser({...user,author:json.author});
+            setUser({ ...user, author: json.author });
         } else {
             // setError(true);
-            console.log(error);
         }
     }
 
@@ -77,7 +71,7 @@ const UserDetails = () => {
         }).then(() => {
             history.push('/users');
         });
-    } 
+    }
 
     return (
         <div className="recipe-details">
@@ -96,30 +90,9 @@ const UserDetails = () => {
                     {user.manager && <p><i class="fa-sharp fa-solid fa-user-tie"></i> manager</p>}
                     {(user.recipes.length > 0) &&
                         <RecipeList recipes={recipes} title='recipes' />
-
-                        //         <div>recipes:
-                        //             <div className="recipe-card">
-                        //     {recipes.map((recipe) => (
-                        //         <NavLink to={`/recipes/${recipe._id}`} style={{ textDecoration: 'none' }}>
-                        //             <div className="polaroid-card" key={recipe._id} >
-
-                        //                 <div className="image-container">
-                        //                     {!recipe.img && <img src="https://handletheheat.com/wp-content/uploads/2015/03/Best-Birthday-Cake-with-milk-chocolate-buttercream-SQUARE.jpg"
-                        //                         alt="your-image-description" />}
-                        //                     {recipe.img && <img src={recipe.img} alt={recipe.title} />}
-                        //                 </div>
-                        //                 <div className="caption-container">
-                        //                     <h2>{recipe.title}</h2>
-                        //                     <p>Written by: {recipe.author}</p>
-                        //                 </div>
-
-                        //             </div>
-                        //         </NavLink>
-                        //     ))}
-                        // </div></div>
                     }
-                    {!user.author&&<button onClick={makeAuthor}>make Author</button>}
-                    {user.author&&<button onClick={makeAuthor}>remove Author</button>}
+                    {!user.author && <button onClick={makeAuthor}>make Author</button>}
+                    {user.author && <button onClick={makeAuthor}>remove Author</button>}
                     <button onClick={handleDelete}>DELETE</button>
 
 

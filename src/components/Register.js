@@ -9,28 +9,10 @@ function Register() {
     let history = useHistory();
     let user_match = false;
     const { user, setUser } = useContext(LoggedContext);
-
     const [IsPending, setIsPending] = useState(false);
-    // const [users_list, setList] = useState([]);// Puts users data in an array
     const [err, setError] = useState(null);
-
-    // const getUsers = async () => {          // Collects the data from FireStore and triggers  SetUsers.
-    //     const response = await fetch('/api/recipes/users');
-    //     const json = await response.json();
-    //     console.log(json);
-    //     if (response.ok) {
-    //         setIsPending(false);
-    //         setList(json);
-    //     } else {
-    //         setError(true);
-    //         console.log(error);
-    //     }
-    // }
     const { data: users_list, error, isPending } = useFetch('/api/recipes/users');
-    // if (users_list.length < 1) {
-    //     getUsers();//call the getUsers method and trigger the collect data from FireStore.
-    // }
-
+ 
 
     const addUser = (new_user) => {
         setError('');
@@ -51,24 +33,17 @@ function Register() {
         } else {
             //check if there is no userName as such
             let user_found = users_list.filter(user => user.email == new_user.email)
-            console.log('user_found', user_found);
             if (user_found.length > 0) {
                 user_match = true;
                 setError('Sorry! There is alraedy an email ' + new_user.userName + ' in the system! try somthing else...');
             }
-            // users_list.map((user, index) => {
-            //     if (new_user.email === user.email) {
-            //         user_match = true;
-            //         setError('Sorry! There is alraedy an email ' + new_user.userName + ' in the system! try somthing else...');
-            //     }
+           
             else {
-                // if ((index === users_list.length - 1) && (user_match === false)) { //creating a new user if validating passed and the is no maching userName
                 new_user.LoggedIn = true;
 
                 const user = {
                     lname: new_user.lname,
                     fname: new_user.fname,
-                    // password: new_user.password,
                     email: new_user.email,
                     manager: false,
                     author: false,
@@ -90,8 +65,6 @@ function Register() {
 
                 history.push('/'); //sending the new user to the main page
             }
-            //     }
-            // });
         }
     }
 

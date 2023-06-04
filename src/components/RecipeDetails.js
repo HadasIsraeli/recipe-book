@@ -10,7 +10,6 @@ const RecipeDetails = () => {
     const { data: recipe, error, isPending } = useFetch('/api/recipes/recipes/' + id);
     const history = useHistory();
     const { user, setUser } = useContext(LoggedContext);//global users, to know who is logged in all the app pages
-    console.log('recipe details', recipe);
 
     const handleDelete = () => {
         fetch('/api/recipes/recipes/' + recipe._id, {
@@ -21,7 +20,6 @@ const RecipeDetails = () => {
     }
 
     const handleUpdate = () => {
-        console.log(recipe);
         history.push('/update/' + recipe._id);
     }
 
@@ -36,8 +34,6 @@ const RecipeDetails = () => {
             }
             switch (type) {
                 case 'add':
-                    console.log('add to favorites:', recipe, type);
-
                     fetch('/api/recipes/users/collections/', {
                         method: 'POST',
                         headers: { "Content-Type": "application/json" },
@@ -49,8 +45,6 @@ const RecipeDetails = () => {
                     break;
 
                 case 'delete':
-                    console.log('delete to favorites:', recipe, type);
-
                     fetch('/api/recipes/users/delcollections/', {
                         method: 'POST',
                         headers: { "Content-Type": "application/json" },
@@ -66,13 +60,11 @@ const RecipeDetails = () => {
     const fetchUser = async () => {
         const response = await fetch('/api/recipes/users/' + user._id);
         const json = await response.json();
-        console.log('users', json);
         if (response.ok) {
             // setIsPending(false);
             setUser({ ...user, collections: json.collections });
         } else {
             // setError(true);
-            console.log(error);
         }
     }
 

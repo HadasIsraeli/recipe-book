@@ -8,12 +8,10 @@ const Navbar = () => {
     const { user, setUser } = useContext(LoggedContext);
     // let user_manager = user.manager;
     let logged_in = user.LoggedIn;
-    console.log('NAVBAR', user, user.manager, logged_in);
     const history = useHistory();
 
     useEffect(() => {
         const data = window.localStorage.getItem('user');
-        console.log('users data local storage:', JSON.parse(data));
         setUser(JSON.parse(data));
     }, []);
 

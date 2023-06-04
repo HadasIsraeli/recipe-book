@@ -7,33 +7,16 @@ import useFetch from './useFetch';
 
 function LogInApp() {
     let history = useHistory();
-
-    // const [users, setUsers] = useState([]);// Puts users data in an array
-    // const [isPending, setIsPending] = useState(false);
     const [err, setError] = useState(null);
     const { user, setUser } = useContext(LoggedContext);//global users, to know who is logged in all the app pages
 
-    // const getUsers = async () => {
-    //     const response = await fetch('/api/recipes/users');
-    //     const json = await response.json();
-    //     console.log(json);
-    //     if (response.ok) {
-    //         setIsPending(false);
-    //         setUsers(json);
-    //     } else {
-    //         setError(true);
-    //         console.log(error);
-    //     }
-    // }
+ 
     const { data: users, error, isPending } = useFetch('/api/recipes/users');
 
-    // if (users.length < 1) {
-    // getUsers();//call the getUsers method and trigger the collect data from FireStore.
-    // }
+   
 
     const Login = details => {
         let user_found = users.filter(user => user.email == details.email && user.password == details.password)
-        console.log('user_found', user_found);
         if (user_found.length > 0) {
             const data = {
                 _id: user_found[0]._id,
@@ -43,14 +26,12 @@ function LogInApp() {
                 recipes: user_found[0].recipes,
                 collections: user_found[0].collections,
                 email: user_found[0].email,
-                // password: user_found[0].password,
                 manager: user_found[0].manager,
                 LoggedIn: true,
                 avatar: user_found[0].avatar
             }
             setUser(data);
             window.localStorage.setItem("user", JSON.stringify(data));
-            console.log('MATCH', user);
             history.push('/');
         }
 

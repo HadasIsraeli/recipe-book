@@ -8,36 +8,29 @@ import magnifier from '../assets/magnifier.png';
 const Home = () => {
   const { user, setUser } = useContext(LoggedContext);
   const [recipes_res, setRecipesRes] = useState([]);
-  const [Pending, setPending] = useState(true);
+  const [Pending, setPending] = useState(false);
   const [erro, setErr] = useState(null);
   const { data: recipes, error, isPending } = useFetch('/api/recipes/recipes');
   const [search, SetSearch] = useState('');
   const [search_win, setSearchWin] = useState(null);
 
-  // useEffect(() => {
-  //   const data = window.localStorage.getItem('user');
-  //   console.log('users data local storage:', JSON.parse(data));
-  //   setUser(JSON.parse(data)); 
-  // }, []);
-
-  // useEffect(() => {
-  //   window.localStorage.setItem("user", JSON.stringify(user));
-  // })
-
   const hanndleSubmit = async (e) => {
     e.preventDefault();
     setRecipesRes([]);
     setPending(true);
-    console.log(search)
+    setErr(false);
     const response = await fetch('/api/recipes/searchrecipes/' + search);
     const json = await response.json();
-    console.log("recipes results", json);
     if (response.ok) {
       setPending(false);
-      setRecipesRes(json);
+      if (json.length > 0) {
+        setRecipesRes(json);
+      } else {
+        setErr(true);
+      }
     } else {
+      setPending(false);
       setErr(true);
-      console.log(error);
     }
   }
 
@@ -49,7 +42,6 @@ const Home = () => {
 
   const handleOpen = () => {
     setSearchWin(true);
-    console.log(search_win);
   }
 
   return (
@@ -63,14 +55,19 @@ const Home = () => {
       </div>
 
       <div>
-        {search_win && <form className="search" onSubmit={hanndleSubmit}>
+        {search_win && <form className="search" onSubmit={hanndleSubmit} >
           <button type="button" style={{ background: "#892be200", color: "black" }} onClick={() => handleClose()}><i class="fa-regular fa-circle-xmark"></i></button>
           <div>
-            <input type="text" name="search" value={search} placeholder="search recipe title..." onChange={(e) => SetSearch(e.target.value)} />
+            <input type="text" name="search" value={search} placeholder="search recipe..."
+              onKeyUp={hanndleSubmit}
+              onChange={(e) => SetSearch(e.target.value)}
+            />
             <button type="submit">Search</button>
           </div>
           {(recipes_res.length > 0) && <RecipeList recipes={recipes_res} title='Results' />}
-          {/* {(recipes_res.length == 0) && <div>No results found</div>} */}
+          {Pending && <div><i class="fa-solid fa-spinner fa-spin-pulse"></i> Searchig...</div>}
+          {erro && <div><i class="fa-solid fa-triangle-exclamation fa-beat"></i> No results found</div>}
+
         </form>}
       </div>
 

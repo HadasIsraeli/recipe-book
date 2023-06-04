@@ -5,37 +5,27 @@ import { LoggedContext } from '../LoggedInUser';
 
 
 const UsersPage = () => {
-    // const { data: users, error, isPending } = useFetch('/api/recipes/users');
     const { user, setUser } = useContext(LoggedContext);
-
     const [users, setUsers] = useState([]);
     const [isPending, setIsPending] = useState(false);
     const [error, setError] = useState(null);
 
-    // useEffect(() => {
-    //     const data = window.localStorage.getItem('user');
-    //     console.log('users data local storage:',JSON.parse(data));
-    //     setUser(JSON.parse(data));
-    // }, []);
 
     useEffect(() => {
         setIsPending(true);
         const fetchAuthorsList = async () => {
             const response = await fetch('/api/recipes/users');
             const json = await response.json();
-            console.log(json);
             if (response.ok) {
                 setIsPending(false);
                 setUsers(json);
             } else {
                 setError(true);
-                console.log(error);
             }
         }
 
         fetchAuthorsList();
     }, []);
-    console.log(users);
 
     return (<div className="recipe-list">
         <h1>Users</h1>

@@ -28,24 +28,31 @@ const getUserRecipes = async (req, res) => {
 }
 
 const getSearchRecipes = async (req, res) => {
-    const searchRecipes = await Recipe.find({ $text: { $search: req.params.id } });
-    res.status(200).json(searchRecipes);
+    try {
+        const searchRecipes = await Recipe.find({
+            $or: [
+                { title: { $regex: req.params.id, $options: "i" } },
+                { author: { $regex: req.params.id, $options: "i" } },
+                { body: { $regex: req.params.id, $options: "i" } }
+            ]
+        });
+
+        res.status(200).json(searchRecipes);
+    } catch {
+        return res.status(400).json({ error: error.message });
+    }
 }
 
 const createRecipe = async (req, res) => {
-    console.log('req.body:',req.body);
     const { title, body, author, ingredients, note, time, temp, img, author_id } = req.body;
     if (req.file) {
-        console.log('req.file',req.file);
         const file = req.file.path;
         try {
-            const recipe = await Recipe.create({ title, body, author, ingredients, note, time, temp, img:file, author_id })
+            const recipe = await Recipe.create({ title, body, author, ingredients, note, time, temp, img: file, author_id })
                 .then(async result => {
-                    // console.log(result, result._id.toString());
                     await updateUser({ params: { id: author_id }, body: { $push: { recipes: result._id.toString() } } });
                     res.status(200).json(recipe);
                 }, err => {
-                    console.log(err);
                     res.status(400).json({ error: error.message });
                 });
         } catch (error) {
@@ -55,11 +62,9 @@ const createRecipe = async (req, res) => {
         try {
             const recipe = await Recipe.create({ title, body, author, ingredients, note, time, temp, img, author_id })
                 .then(async result => {
-                    console.log(result, result._id.toString());
                     await updateUser({ params: { id: author_id }, body: { $push: { recipes: result._id.toString() } } });
                     res.status(200).json(recipe);
                 }, err => {
-                    console.log(err);
                     res.status(400).json({ error: error.message });
                 });
         } catch (error) {
@@ -75,11 +80,9 @@ const deleteRecipe = async (req, res) => {
     }
     const recipe = await Recipe.findOneAndDelete({ _id: id })
         .then(async result => {
-            console.log('result.author_id.toString():', result.author_id.toString());
             await updateUser({ params: { id: result.author_id.toString() }, body: { $pull: { recipes: id } } }, res);
             res.status(200).json(result);
         }, err => {
-            console.log(err);
             res.status(400).json({ error: error.message });
         });
 
@@ -166,7 +169,6 @@ const deleteUser = async (req, res) => {
 
 const updateUser = async (req, res) => {
     const { id } = req.params;
-    console.log('updateUser:', req.body, id);
     if (!mongoose.Types.ObjectId.isValid(id)) {
         return res.status(404).json({ error: 'updateUser no such user id' });
     }
@@ -185,7 +187,6 @@ const updateUser = async (req, res) => {
 const addToCollection = async (req, res) => {
     const { id } = req.params;
     const { user_id, _id } = req.body;
-    console.log(user_id, _id);
     try {
         updateUser({ params: { id: user_id }, body: { $push: { collections: _id } } });
         return res.status(200).json('ok');
@@ -211,14 +212,11 @@ const deleteFromCollection = async (req, res) => {
 
 const getfavorites = async (req, res) => {
     const { collections } = req.body;
-    // console.log(req.body,req.body.length-1);
     const favorites = [];
     req.body.forEach(async (element, index) => {
         const allUsersRecipes = await Recipe.find({ _id: element });
         favorites.push(allUsersRecipes[0]);
-        // console.log(index,allUsersRecipes[0]);
         if (index == req.body.length - 1 && favorites.length == req.body.length) {
-            // console.log('favorites',favorites,index);
             res.status(200).json(favorites);
         }
     });

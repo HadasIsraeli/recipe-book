@@ -16,27 +16,8 @@ const Create = () => {
     const [isPending, setIsPending] = useState(false);
     const [error, setError] = useState(null);
     const history = useHistory();
-    // let authors_name = ['Hadas', 'Inbar', 'Sarah'];
-    // const [authors, setAuthors] = useState([]);
-    // const [image, setImage] = useState('');
     const [img, setImg] = useState('');
 
-    // useEffect(() => {
-    //     const fetchAuthorsList = async () => {
-    //         const response = await fetch('/api/recipes/users');
-    //         const json = await response.json();
-    //         console.log(json);
-    //         if (response.ok) {
-    //             setIsPending(false);
-    //             setAuthors(json);
-    //         } else {
-    //             setError(true);
-    //             console.log(error);
-    //         }
-    //     }
-
-    //     fetchAuthorsList();
-    // }, []);
 
     const hanndleSubmit = (e) => {
         e.preventDefault();
@@ -50,9 +31,6 @@ const Create = () => {
         formdata.append("temp", temp);
         formdata.append("author_id", author_id);
         formdata.append("img", img, img.name);
-        console.log(formdata);
-        // const recipe = { title, body, author, ingredients, note, time, temp, img, author_id };
-        // console.log('recipe!', recipe);
         setIsPending(true);
         fetch('/api/recipes/recipes', {
             method: 'POST',
@@ -69,7 +47,6 @@ const Create = () => {
         if (item !== '') {
             setIngredients([...ingredients, item]);
             setItem('');
-            console.log('added item!', ingredients);
         } else {
             alert('Sorry, the ingredient is empty!');
         }
@@ -82,40 +59,17 @@ const Create = () => {
 
 
     const handleFileUpload = async (e) => {
-        // setImage(e.target.files[0])
-        // const base64 = await ConverToBase64(e.target.files[0]);
-        // setImg(base64);
         setImg(e.target.files[0])
-        console.log(e.target.files[0]);
     }
 
     const fetchUser = async () => {
         const response = await fetch('/api/recipes/users/' + user._id);
         const json = await response.json();
-        console.log('users', json);
         if (response.ok) {
-            // setIsPending(false);
             setUser({ ...user, recipes: json.recipes });
         } else {
-            // setError(true);
-            console.log(error);
         }
     }
-
-    // const handleAddImg = () => {
-    //     console.log(img);
-    //     const recipe = { title: "img test", body: "a", author: 'hadas', ingredients: ['a'], note: "a", time: 3, temp: 3, img };
-    //     setIsPending(true);
-    //     fetch('/uploads', {
-    //         method: 'POST',
-    //         headers: { "Content-Type": "application/json" },
-    //         body: JSON.stringify(recipe)
-    //     }).then(() => {
-    //         console.log(recipe);
-    //         setIsPending(false);
-    //     });
-
-    // }
 
     return (
         <div className="create">
@@ -152,18 +106,11 @@ const Create = () => {
                     <label>
                         Image:
                         <input type="file" name="imgfile" accept=".png,.jpg" onChange={handleFileUpload} />
-                        {/* <button type="button" onClick={handleAddImg}>add img</button> */}
                     </label>
                     <img src={img} alt={title} />
 
                     <label>Recipe author: {author}</label>
-                    {/* <select name="author"
-                        value={author} onChange={(e) => setAuthor(e.target.value)}>
-                        {authors.map((author) => (
-                            <option value="author">{author.fname} {author.lname}</option>
-                        ))}
-                    </select> */}
-                    {!isPending && (ingredients.length > 0) && img &&<button type="submit">Add Recipe</button>}
+                    {!isPending && (ingredients.length > 0) && img && <button type="submit">Add Recipe</button>}
                     {isPending && <button disabled>Adding Recipe...</button>}
 
                 </form>
@@ -182,16 +129,3 @@ const Create = () => {
 }
 
 export default Create;
-
-// function ConverToBase64(file) {
-//     return new Promise((resolve, reject) => {
-//         const fileReader = new FileReader();
-//         fileReader.readAsDataURL(file);
-//         fileReader.onload = () => {
-//             resolve(fileReader.result);
-//         }
-//         fileReader.onerror = (err) => {
-//             reject(err);
-//         }
-//     })
-// }

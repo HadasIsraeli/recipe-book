@@ -23,24 +23,20 @@ const UserProfile = () => {
             setIsPending(true);
             const response = await fetch('/api/recipes/userrecipes/' + user._id);
             const json = await response.json();
-            console.log("recipes", json);
             if (response.ok) {
                 setRecipes(json);
                 if (user.collections.length > 0) {
-                    console.log('get fav', user.collections);
                     const response = await fetch('/api/recipes/recipes/favorites/', {
                         method: 'POST',
                         headers: { "Content-Type": "application/json" },
                         body: JSON.stringify(user.collections)
                     });
                     const json = await response.json();
-                    console.log('favorites', json);
                     setFavorites(json);
                 }
                 setIsPending(false);
             } else {
                 setError(true);
-                console.log(error);
             }
         }
 
@@ -50,7 +46,6 @@ const UserProfile = () => {
     }, []);
 
     const Avatar = async (avatar_img) => {
-        console.log(avatar_img);
         const response = await fetch('/api/recipes/users/' + user._id, {
             method: 'PATCH',
             headers: { "Content-Type": "application/json" },
@@ -65,13 +60,11 @@ const UserProfile = () => {
     const fetchUser = async () => {
         const response = await fetch('/api/recipes/users/' + user._id);
         const json = await response.json();
-        console.log('users', json);
         if (response.ok) {
             setIsPending(false);
             setUser({ ...user, avatar: json.avatar });
         } else {
             setError(true);
-            console.log(error);
         }
     }
 
@@ -81,7 +74,6 @@ const UserProfile = () => {
 
     const handleOpen = () => {
         setSettingsWin(true);
-        console.log(settings_win);
     }
 
     return (
