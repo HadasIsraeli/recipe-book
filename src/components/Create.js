@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { LoggedContext } from '../LoggedInUser';
 
@@ -6,7 +6,7 @@ const Create = () => {
     const { user, setUser } = useContext(LoggedContext);
     const [title, setTitle] = useState('');
     const [body, setBody] = useState('');
-    const [author, setAuthor] = useState(user.fname + ' ' + user.lname);
+    const author = user.fname + ' ' + user.lname;
     const [ingredients, setIngredients] = useState([]);
     const [item, setItem] = useState('');
     const [note, setNote] = useState('');
@@ -14,7 +14,7 @@ const Create = () => {
     const [temp, setTemp] = useState();
     const author_id = user._id;
     const [isPending, setIsPending] = useState(false);
-    const [error, setError] = useState(null);
+    // const [error, setError] = useState(null);
     const history = useHistory();
     const [img, setImg] = useState('');
 

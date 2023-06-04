@@ -1,12 +1,9 @@
-import { useEffect, useState, useContext } from "react";
+import {  useState } from "react";
 import RecipeList from "./RecipeList";
 import useFetch from "./useFetch";
-import { LoggedContext } from '../LoggedInUser';
-import magnifier from '../assets/magnifier.png';
 
 
 const Home = () => {
-  const { user, setUser } = useContext(LoggedContext);
   const [recipes_res, setRecipesRes] = useState([]);
   const [Pending, setPending] = useState(false);
   const [erro, setErr] = useState(null);
