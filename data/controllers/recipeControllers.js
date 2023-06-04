@@ -216,7 +216,7 @@ const getfavorites = async (req, res) => {
     req.body.forEach(async (element, index) => {
         const allUsersRecipes = await Recipe.find({ _id: element });
         favorites.push(allUsersRecipes[0]);
-        if (index == req.body.length - 1 && favorites.length == req.body.length) {
+        if (index === req.body.length - 1 && favorites.length === req.body.length) {
             res.status(200).json(favorites);
         }
     });

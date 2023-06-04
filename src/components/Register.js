@@ -32,7 +32,7 @@ function Register() {
             setError('Invalid password! minLength: 6, minLowercase: 1, minUppercase: 1, minNumbers: 1, minSymbols: 1');
         } else {
             //check if there is no userName as such
-            let user_found = users_list.filter(user => user.email == new_user.email)
+            let user_found = users_list.filter(user => user.email === new_user.email)
             if (user_found.length > 0) {
                 user_match = true;
                 setError('Sorry! There is alraedy an email ' + new_user.userName + ' in the system! try somthing else...');

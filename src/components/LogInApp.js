@@ -16,7 +16,7 @@ function LogInApp() {
    
 
     const Login = details => {
-        let user_found = users.filter(user => user.email == details.email && user.password == details.password)
+        let user_found = users.filter(user => user.email === details.email && user.password === details.password)
         if (user_found.length > 0) {
             const data = {
                 _id: user_found[0]._id,
