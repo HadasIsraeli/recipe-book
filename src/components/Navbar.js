@@ -6,7 +6,6 @@ import profile_user from '../assets/profile_user.png'
 
 const Navbar = () => {
     const { user, setUser } = useContext(LoggedContext);
-    // let user_manager = user.manager;
     let logged_in = user.LoggedIn;
     const history = useHistory();
 

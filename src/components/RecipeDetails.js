@@ -24,7 +24,7 @@ const RecipeDetails = () => {
     }
 
     const handleCollection = (type) => {
-        if (user._id == "") {
+        if (user._id === "") {
             alert('Please login or register');
         }
         else {
