@@ -15,7 +15,7 @@ export const LoggedContextWrapper = ({ children }) => {
         avatar: "",
         password: "",
         manager: false,
-        LoggedIn:false
+        LoggedIn: false
     });
 
     return (

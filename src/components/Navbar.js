@@ -10,8 +10,10 @@ const Navbar = () => {
     const history = useHistory();
 
     useEffect(() => {
-        const data = window.localStorage.getItem('user');
-        setUser(JSON.parse(data));
+        if (window.localStorage.getItem('user')) {
+            const data = window.localStorage.getItem('user');
+            setUser(JSON.parse(data));
+        }
     }, []);
 
 
