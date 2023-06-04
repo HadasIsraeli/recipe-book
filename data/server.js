@@ -14,7 +14,8 @@ app.use(
     cors({
         origin: [
             "http://localhost:3000",
-            "https://recipe-book.netlify.app"
+            "https://recipe-book-01.netlify.app",
+            "https://recipe-book-1um0.onrender.com"
         ],
     })
 );
