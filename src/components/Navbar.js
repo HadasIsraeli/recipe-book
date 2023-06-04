@@ -6,7 +6,7 @@ import profile_user from '../assets/profile_user.png'
 
 const Navbar = () => {
     const { user, setUser } = useContext(LoggedContext);
-    let logged_in = user.LoggedIn;
+    // let user.LoggedIn = user.LoggedIn || false;
     const history = useHistory();
 
     useEffect(() => {
@@ -14,7 +14,7 @@ const Navbar = () => {
         setUser(JSON.parse(data));
     }, []);
 
-  
+
 
     const Logout = () => {      //set global user details to first state and logout
         const data = {
@@ -33,7 +33,7 @@ const Navbar = () => {
         history.push('/'); //sends the user to login page
     }
 
-    if (user.manager && logged_in) {
+    if (user.manager && user.LoggedIn) {
         return (
             <nav className="navbar">
                 <h1>The MerimIsraeli Recipe Book</h1>
@@ -60,7 +60,7 @@ const Navbar = () => {
                 </div>
             </nav>
         );
-    } else if (!user.manager && !user.author && logged_in) {
+    } else if (!user.manager && !user.author && user.LoggedIn) {
         return (
             <nav className="navbar">
                 <h1>The MerimIsraeli Recipe Book</h1>
@@ -88,7 +88,7 @@ const Navbar = () => {
                 </button> */}
             </nav>
         );
-    } else if (!user.manager && user.author && logged_in) {
+    } else if (!user.manager && user.author && user.LoggedIn) {
         return (
             <nav className="navbar">
                 <h1>The MerimIsraeli Recipe Book</h1>
