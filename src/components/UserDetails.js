@@ -18,7 +18,7 @@ const UserDetails = () => {
 
     useEffect(() => {
         const fetchAuthorsList = async () => {
-            const response = await fetch('/api/recipes/users/' + id);
+            const response = await fetch('https://recipe-book-server.onrender.com/api/recipes/users/' + id);
             const json = await response.json();
             if (response.ok) {
                 setIsPending(false);
@@ -33,7 +33,7 @@ const UserDetails = () => {
     }, []);
 
     const fetchRecipesList = async () => {
-        const response = await fetch('/api/recipes/userrecipes/' + id);
+        const response = await fetch('https://recipe-book-server.onrender.com/api/recipes/userrecipes/' + id);
         const json = await response.json();
         if (response.ok) {
             setRecipes(json);
@@ -43,7 +43,7 @@ const UserDetails = () => {
     }
 
     const makeAuthor = async () => {
-        const response = await fetch('/api/recipes/users/' + user._id, {
+        const response = await fetch('https://recipe-book-server.onrender.com/api/recipes/users/' + user._id, {
             method: 'PATCH',
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ author: !user.author })
@@ -55,7 +55,7 @@ const UserDetails = () => {
     }
 
     const fetchUser = async () => {
-        const response = await fetch('/api/recipes/users/' + user._id);
+        const response = await fetch('https://recipe-book-server.onrender.com/api/recipes/users/' + user._id);
         const json = await response.json();
         if (response.ok) {
             // setIsPending(false);
@@ -66,7 +66,7 @@ const UserDetails = () => {
     }
 
     const handleDelete = () => {
-        fetch('/api/recipes/users/' + user._id, {
+        fetch('https://recipe-book-server.onrender.com/api/recipes/users/' + user._id, {
             method: 'DELETE',
         }).then(() => {
             history.push('/users');

@@ -10,7 +10,7 @@ const Home = () => {
   const [recipes_res, setRecipesRes] = useState([]);
   const [Pending, setPending] = useState(false);
   const [erro, setErr] = useState(null);
-  const { data: recipes, error, isPending } = useFetch('/api/recipes/recipes');
+  const { data: recipes, error, isPending } = useFetch('https://recipe-book-server.onrender.com/api/recipes/recipes');
   const [search, SetSearch] = useState('');
   const [search_win, setSearchWin] = useState(null);
 
@@ -19,7 +19,7 @@ const Home = () => {
     setRecipesRes([]);
     setPending(true);
     setErr(false);
-    const response = await fetch('/api/recipes/searchrecipes/' + search);
+    const response = await fetch('https://recipe-book-server.onrender.com/api/recipes/searchrecipes/' + search);
     const json = await response.json();
     if (response.ok) {
       setPending(false);

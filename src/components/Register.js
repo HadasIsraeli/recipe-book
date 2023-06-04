@@ -11,7 +11,7 @@ function Register() {
     const { user, setUser } = useContext(LoggedContext);
     const [IsPending, setIsPending] = useState(false);
     const [err, setError] = useState(null);
-    const { data: users_list, error, isPending } = useFetch('/api/recipes/users');
+    const { data: users_list, error, isPending } = useFetch('https://recipe-book-server.onrender.com/api/recipes/users');
  
 
     const addUser = (new_user) => {
@@ -52,7 +52,7 @@ function Register() {
                     collections: [],
                 };
                 setIsPending(true);
-                fetch('/api/recipes/users', {
+                fetch('https://recipe-book-server.onrender.com/api/recipes/users', {
                     method: 'POST',
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify(user)

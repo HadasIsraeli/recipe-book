@@ -32,7 +32,7 @@ const Create = () => {
         formdata.append("author_id", author_id);
         formdata.append("img", img, img.name);
         setIsPending(true);
-        fetch('/api/recipes/recipes', {
+        fetch('https://recipe-book-server.onrender.com/api/recipes/recipes', {
             method: 'POST',
             body: formdata,
             redirect: 'follow'
@@ -63,7 +63,7 @@ const Create = () => {
     }
 
     const fetchUser = async () => {
-        const response = await fetch('/api/recipes/users/' + user._id);
+        const response = await fetch('https://recipe-book-server.onrender.com/api/recipes/users/' + user._id);
         const json = await response.json();
         if (response.ok) {
             setUser({ ...user, recipes: json.recipes });

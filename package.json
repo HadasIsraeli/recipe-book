@@ -1,5 +1,5 @@
 {
-  "proxy": "http://localhost:3001",
+  "proxy": "https://recipe-book-server.onrender.com",
   "name": "recipe-book",
   "version": "0.1.0",
   "private": true,

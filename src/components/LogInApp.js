@@ -11,7 +11,7 @@ function LogInApp() {
     const { user, setUser } = useContext(LoggedContext);//global users, to know who is logged in all the app pages
 
  
-    const { data: users, error, isPending } = useFetch('/api/recipes/users');
+    const { data: users, error, isPending } = useFetch('https://recipe-book-server.onrender.com/api/recipes/users');
 
    
 

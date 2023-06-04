@@ -7,12 +7,12 @@ import { useContext } from 'react';
 
 const RecipeDetails = () => {
     const { id } = useParams();
-    const { data: recipe, error, isPending } = useFetch('/api/recipes/recipes/' + id);
+    const { data: recipe, error, isPending } = useFetch('https://recipe-book-server.onrender.com/api/recipes/recipes/' + id);
     const history = useHistory();
     const { user, setUser } = useContext(LoggedContext);//global users, to know who is logged in all the app pages
 
     const handleDelete = () => {
-        fetch('/api/recipes/recipes/' + recipe._id, {
+        fetch('https://recipe-book-server.onrender.com/api/recipes/recipes/' + recipe._id, {
             method: 'DELETE',
         }).then(() => {
             history.push('/');
@@ -34,7 +34,7 @@ const RecipeDetails = () => {
             }
             switch (type) {
                 case 'add':
-                    fetch('/api/recipes/users/collections/', {
+                    fetch('https://recipe-book-server.onrender.com/api/recipes/users/collections/', {
                         method: 'POST',
                         headers: { "Content-Type": "application/json" },
                         body: JSON.stringify(body)
@@ -45,7 +45,7 @@ const RecipeDetails = () => {
                     break;
 
                 case 'delete':
-                    fetch('/api/recipes/users/delcollections/', {
+                    fetch('https://recipe-book-server.onrender.com/api/recipes/users/delcollections/', {
                         method: 'POST',
                         headers: { "Content-Type": "application/json" },
                         body: JSON.stringify(body)
@@ -58,7 +58,7 @@ const RecipeDetails = () => {
     }
 
     const fetchUser = async () => {
-        const response = await fetch('/api/recipes/users/' + user._id);
+        const response = await fetch('https://recipe-book-server.onrender.com/api/recipes/users/' + user._id);
         const json = await response.json();
         if (response.ok) {
             // setIsPending(false);

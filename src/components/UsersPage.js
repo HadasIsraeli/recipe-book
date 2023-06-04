@@ -14,7 +14,7 @@ const UsersPage = () => {
     useEffect(() => {
         setIsPending(true);
         const fetchAuthorsList = async () => {
-            const response = await fetch('/api/recipes/users');
+            const response = await fetch('https://recipe-book-server.onrender.com/api/recipes/users');
             const json = await response.json();
             if (response.ok) {
                 setIsPending(false);

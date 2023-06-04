@@ -21,12 +21,12 @@ const UserProfile = () => {
     useEffect(() => {
         const fetchRecipesList = async () => {
             setIsPending(true);
-            const response = await fetch('/api/recipes/userrecipes/' + user._id);
+            const response = await fetch('https://recipe-book-server.onrender.com/api/recipes/userrecipes/' + user._id);
             const json = await response.json();
             if (response.ok) {
                 setRecipes(json);
                 if (user.collections.length > 0) {
-                    const response = await fetch('/api/recipes/recipes/favorites/', {
+                    const response = await fetch('https://recipe-book-server.onrender.com/api/recipes/recipes/favorites/', {
                         method: 'POST',
                         headers: { "Content-Type": "application/json" },
                         body: JSON.stringify(user.collections)
@@ -46,7 +46,7 @@ const UserProfile = () => {
     }, []);
 
     const Avatar = async (avatar_img) => {
-        const response = await fetch('/api/recipes/users/' + user._id, {
+        const response = await fetch('https://recipe-book-server.onrender.com/api/recipes/users/' + user._id, {
             method: 'PATCH',
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ avatar: avatar_img })
@@ -58,7 +58,7 @@ const UserProfile = () => {
     }
 
     const fetchUser = async () => {
-        const response = await fetch('/api/recipes/users/' + user._id);
+        const response = await fetch('https://recipe-book-server.onrender.com/api/recipes/users/' + user._id);
         const json = await response.json();
         if (response.ok) {
             setIsPending(false);
