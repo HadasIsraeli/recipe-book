@@ -38,7 +38,7 @@ const Navbar = () => {
     if (user.manager && user.LoggedIn) {
         return (
             <nav className="navbar">
-                <h1>The MerimIsraeli Recipe Book</h1>
+                <h1>Recipe Book <i class="fa-solid fa-kitchen-set"></i></h1>
                 {/* <div className="h1">MANAGER page</div> */}
                 <div className="links">
                     <Link to="/"><i class="fa-solid fa-house"></i></Link>
@@ -65,7 +65,7 @@ const Navbar = () => {
     } else if (!user.manager && !user.author && user.LoggedIn) {
         return (
             <nav className="navbar">
-                <h1>The MerimIsraeli Recipe Book</h1>
+                <h1>Recipe Book <i class="fa-solid fa-kitchen-set"></i></h1>
                 {/* <div className="h1">USER page</div> */}
                 <div className="links">
                     <Link to="/"><i class="fa-solid fa-house"></i></Link>
@@ -93,7 +93,7 @@ const Navbar = () => {
     } else if (!user.manager && user.author && user.LoggedIn) {
         return (
             <nav className="navbar">
-                <h1>The MerimIsraeli Recipe Book</h1>
+                <h1>Recipe Book <i class="fa-solid fa-kitchen-set"></i></h1>
                 {/* <div className="h1">USER author page</div> */}
                 <div className="links">
                     <Link to="/"><i class="fa-solid fa-house"></i></Link>
@@ -122,7 +122,7 @@ const Navbar = () => {
     } else {
         return (
             <nav className="navbar">
-                <h1>The MerimIsraeli Recipe Book</h1>
+                <h1>Recipe Book <i class="fa-solid fa-kitchen-set"></i></h1>
                 <div className="links">
                     <Link to="/"><i class="fa-solid fa-house"></i></Link>
                     <div className="dropdown">

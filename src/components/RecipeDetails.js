@@ -94,7 +94,7 @@ const RecipeDetails = () => {
                     {recipe.note && <div>{recipe.note}</div>}
 
                     {(user.manager || ((user.fname + ' ' + user.lname).toString() === recipe.author)) && <button onClick={handleDelete}>Delete</button>}
-                    {(user.manager || ((user.fname + ' ' + user.lname).toString() === recipe.author)) && <button onClick={handleUpdate}>Update</button>}
+                    {(user.manager || ((user.fname + ' ' + user.lname).toString() === recipe.author)) && <button onClick={handleUpdate}>Edit</button>}
                 </article>
             )}
         </div>
