@@ -1,4 +1,4 @@
-import {  useState } from "react";
+import { useState } from "react";
 import RecipeList from "./RecipeList";
 import useFetch from "./useFetch";
 
@@ -14,20 +14,22 @@ const Home = () => {
   const hanndleSubmit = async (e) => {
     e.preventDefault();
     setRecipesRes([]);
-    setPending(true);
-    setErr(false);
-    const response = await fetch('https://recipe-book-server.onrender.com/api/recipes/searchrecipes/' + search);
-    const json = await response.json();
-    if (response.ok) {
-      setPending(false);
-      if (json.length > 0) {
-        setRecipesRes(json);
+    if (search.length > 0) {
+      setPending(true);
+      setErr(false);
+      const response = await fetch('https://recipe-book-server.onrender.com/api/recipes/searchrecipes/' + search);
+      const json = await response.json();
+      if (response.ok) {
+        setPending(false);
+        if (json.length > 0) {
+          setRecipesRes(json);
+        } else {
+          setErr(true);
+        }
       } else {
+        setPending(false);
         setErr(true);
       }
-    } else {
-      setPending(false);
-      setErr(true);
     }
   }
 
