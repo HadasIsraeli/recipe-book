@@ -40,7 +40,7 @@ const UsersPage = () => {
                             alt="your-image-description" />}
                         {user.img && <img src={user.img} alt={user.title} />} */}
                             <div>
-                                <i class={user.avatar}></i>
+                                <i class={user.avatar} style={{"font-size": "55px"}}></i>
                             </div>
                         </div>
                         <div className="caption-container">

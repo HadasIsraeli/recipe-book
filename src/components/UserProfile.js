@@ -96,7 +96,7 @@ const UserProfile = () => {
                             }} onClick={() => handleOpen()}><i class="fa-solid fa-images"></i></button>}
                         </div>
 
-                        <div>
+                        <div style={{margin:"0 0 0 15px"}}>
                             <p><i class="fa-solid fa-envelope"></i> {user.email}</p>
                             <p><i class="fa-solid fa-book"></i> recipes: {user.recipes.length}</p>
                             <p><i class="fa-solid fa-star"></i> favorites: {user.collections.length}</p>
@@ -106,7 +106,7 @@ const UserProfile = () => {
                     </div>
                     {settings_win && <div className="settings">
                         <button type="button" style={{ width: "36px", color: "#000000" }} onClick={() => handleClose()}><i class="fa-regular fa-circle-xmark"></i></button>
-                        <div>
+                        <div style={{ overflow: "auto" }}>
                             {avatars.map((avatar) => (
                                 <button type="button" onClick={() => Avatar(avatar)}>
                                     <i class={avatar}></i>

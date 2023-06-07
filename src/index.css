@@ -27,6 +27,7 @@ code {
   bottom: 0;
   background: #ffffff;
   height: 30px;
+  z-index: 9;
 }
 
 .footer img {
@@ -55,6 +56,7 @@ code {
 .navbar h1 {
   color: #A259FF;
   font-size: 32px;
+  min-width: 215px;
 }
 
 .navbar .links {
@@ -159,11 +161,12 @@ code {
 }
 
 .create {
-  max-width: 600px;
+  width: 70%;
   margin: 30px auto;
   text-align: center;
   display: flex;
   justify-content: space-between;
+  flex-direction: column;
   background: #e9d7fa59;
   padding: 10px;
   border-radius: 10px;
@@ -208,6 +211,7 @@ code {
   cursor: pointer;
   height: 30px;
   margin: 10px;
+  max-width: 120px;
 }
 
 .create button:hover {
@@ -432,7 +436,9 @@ i {
   position: absolute;
   top: 10%;
   width: 25%;
-  right: 40%;
+  right: 5%;
+  height: 230px;
+  max-width: 30%;
 }
 
 .settings button {
@@ -489,8 +495,6 @@ i {
   box-shadow: 1px 3px 5px #A259FF;
 }
 
-.user-details{
+.user-details {
   display: flex;
-  width: 30%;
-  justify-content: space-between;
 }

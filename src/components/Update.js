@@ -110,7 +110,7 @@ const Update = () => {
                         value={temp} onChange={(e) => setTemp(e.target.value)} />
 
                     <label>Recipe Content:</label>
-                    <textarea name="content" required
+                    <textarea name="content" required style={{height: "200px"}}
                         value={body} onChange={(e) => setBody(e.target.value)} />
 
                     {/* <label>
@@ -120,7 +120,7 @@ const Update = () => {
                     {/* {img && <img src={img} alt={title} />} */}
 
                     <label>Notes:</label>
-                    <textarea name="note"
+                    <textarea name="note" style={{height: "100px"}}
                         value={note} onChange={(e) => setNote(e.target.value)} />
 
                     <label>Recipe author: {author}</label>

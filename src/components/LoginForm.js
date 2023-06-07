@@ -21,18 +21,20 @@ function LoginForm({ Login, error }) {
                 <h2 className="form-title">Login</h2>
                 {(error !== "") ? (
                     <div className="error">{error}</div>) : ""}
-                <div className="form-group">
-                    <lable htmlFor="name">email:</lable>
-                    <input type="text" name="email" id="email" required onChange={e => setDetails({ ...details, email: e.target.value })} value={details.email} />
-                </div>
-                <div className="form-group">
-                    <lable htmlFor="password">Password:</lable>
-                    <input type="password" name="password" id="password" required onChange={e => setDetails({ ...details, password: e.target.value })} value={details.password} />
+                <div class="form-group-inputs">
+                    <div className="form-group">
+                        <lable htmlFor="name">email:</lable>
+                        <input type="text" name="email" id="email" required onChange={e => setDetails({ ...details, email: e.target.value })} value={details.email} />
+                    </div>
+                    <div className="form-group">
+                        <lable htmlFor="password">Password:</lable>
+                        <input type="password" name="password" id="password" required onChange={e => setDetails({ ...details, password: e.target.value })} value={details.password} />
+                    </div>
                 </div>
                 <button type="submit">Login</button>
 
             </div>
-        </form>
+        </form >
     )
 }
 

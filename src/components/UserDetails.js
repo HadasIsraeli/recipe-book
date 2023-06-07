@@ -84,7 +84,7 @@ const UserDetails = () => {
                         <div className='avatar'>
                             <i class={user.avatar}></i>
                         </div>
-                        <div>
+                        <div style={{margin:"0 0 0 15px"}}>
                             <p><i class="fa-solid fa-envelope"></i> {user.email}</p>
                             <p><i class="fa-solid fa-book"></i> recipes: {user.recipes.length}</p>
                             <p><i class="fa-solid fa-star"></i> favorites: {user.collections.length}</p>
