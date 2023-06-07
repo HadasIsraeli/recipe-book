@@ -7,7 +7,7 @@ const RecipeList = ({ recipes, title }) => {
             <h1>{title}</h1>
             <div className="recipe-card">
                 {recipes.map((recipe) => (
-                    <NavLink to={`/recipes/${recipe._id}`} style={{ textDecoration: 'none' }}>
+                    <NavLink to={`/recipes/${recipe["_id"]}`} style={{ textDecoration: 'none' }}>
                         <div className="polaroid-card" key={recipe._id} >
 
                             <div className="image-container">

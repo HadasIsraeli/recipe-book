@@ -16,7 +16,7 @@ const UserProfile = () => {
         "fa-solid fa-user-ninja", "fa-solid fa-user-graduate",
         "fa-solid fa-user-astronaut", "fa-solid fa-poo", "fa-brands fa-suse",
         "fa-solid fa-skull", "fa-solid fa-dragon", "fa-solid fa-peace", "fa-solid fa-burger",
-        "fa-solid fa-hippo", "fa-solid fa-ghost", "fa-solid fa-robot"]//<i class=></i>
+        "fa-solid fa-hippo", "fa-solid fa-ghost", "fa-solid fa-robot"];
 
     useEffect(() => {
         const fetchRecipesList = async () => {
