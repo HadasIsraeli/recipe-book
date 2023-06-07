@@ -430,9 +430,9 @@ i {
   background: #e9d7fa;
   border-radius: 10px;
   position: absolute;
-  top: 14%;
-  width: 60%;
-  right: 10px;
+  top: 10%;
+  width: 25%;
+  right: 40%;
 }
 
 .settings button {
@@ -458,4 +458,39 @@ i {
 
 .avatar i {
   font-size: 60px;
+}
+
+.profile-details h2 {
+  font-size: 20px;
+  color: #A259FF;
+  margin-bottom: 10px;
+}
+
+.profile-info {
+  margin: 20px;
+}
+
+.profile-details img {
+  /* width: 240px; */
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+.profile-details button {
+  background: #A259FF;
+  color: #ffffff;
+  border: 0;
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin: 10px;
+}
+
+.profile-details button:hover {
+  box-shadow: 1px 3px 5px #A259FF;
+}
+
+.user-details{
+  display: flex;
+  width: 30%;
+  justify-content: space-between;
 }

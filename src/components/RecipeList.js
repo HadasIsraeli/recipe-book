@@ -7,7 +7,7 @@ const RecipeList = ({ recipes, title }) => {
             <h1>{title}</h1>
             <div className="recipe-card">
                 {recipes.map((recipe) => (
-                    <NavLink to={`/recipes/${recipe["_id"]}`} style={{ textDecoration: 'none' }}>
+                    (recipe) && (<NavLink to={`/recipes/${recipe["_id"]}`} style={{ textDecoration: 'none' }}>
                         <div className="polaroid-card" key={recipe._id} >
 
                             <div className="image-container">
@@ -22,6 +22,7 @@ const RecipeList = ({ recipes, title }) => {
 
                         </div>
                     </NavLink>
+                    )
                 ))}
             </div>
         </div>

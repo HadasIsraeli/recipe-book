@@ -77,13 +77,13 @@ const UserProfile = () => {
     }
 
     return (
-        <div className="recipe-details">
+        <div className="profile-details">
             {isPending && <div><i class="fa-solid fa-spinner fa-spin-pulse"></i> Loading...</div>}
             {error && <div><i class="fa-solid fa-triangle-exclamation fa-beat"></i> Error...</div>}
             {user && (
-                <div>
-                    <h2 style={{"font-size":"32px"}}>{user.fname} {user.lname}</h2>
-                    <div style={{display:"flex"}}>
+                <div className="profile-info">
+                    <h2 style={{ "font-size": "32px" }}>{user.fname} {user.lname}</h2>
+                    <div className='user-details'>
                         <div>
                             <div className='avatar'>
                                 <i class={user.avatar}></i>
@@ -92,19 +92,10 @@ const UserProfile = () => {
                                 position: "revert",
                                 left: "10px",
                                 "font-size": "10px",
-                                
+
                             }} onClick={() => handleOpen()}><i class="fa-solid fa-images"></i></button>}
                         </div>
-                        {settings_win && <div className="settings">
-                            <button type="button" style={{ width: "36px", color: "#000000" }} onClick={() => handleClose()}><i class="fa-regular fa-circle-xmark"></i></button>
-                            <div>
-                                {avatars.map((avatar) => (
-                                    <button type="button" onClick={() => Avatar(avatar)}>
-                                        <i class={avatar}></i>
-                                    </button>
-                                ))}
-                            </div>
-                        </div>}
+
                         <div>
                             <p><i class="fa-solid fa-envelope"></i> {user.email}</p>
                             <p><i class="fa-solid fa-book"></i> recipes: {user.recipes.length}</p>
@@ -113,34 +104,18 @@ const UserProfile = () => {
                             {user.manager && <p><i class="fa-sharp fa-solid fa-user-tie"></i> manager</p>}
                         </div>
                     </div>
-                    {(recipes.length > 0) &&
-                        <RecipeList recipes={recipes} title='my recipes' />
-
-                        // <div>recipes:
-                        //     <div className="recipe-card">
-                        //         {recipes.map((recipe) => (
-                        //             <NavLink to={`/recipes/${recipe._id}`} style={{ textDecoration: 'none' }}>
-                        //                 <div className="polaroid-card" key={recipe._id} >
-
-                        //                     <div className="image-container">
-                        //                         {!recipe.img && <img src="https://handletheheat.com/wp-content/uploads/2015/03/Best-Birthday-Cake-with-milk-chocolate-buttercream-SQUARE.jpg"
-                        //                             alt="your-image-description" />}
-                        //                         {recipe.img && <img src={recipe.img} alt={recipe.title} />}
-                        //                     </div>
-                        //                     <div className="caption-container">
-                        //                         <h2>{recipe.title}</h2>
-                        //                         <p>Written by: {recipe.author}</p>
-                        //                     </div>
-
-                        //                 </div>
-                        //             </NavLink>
-                        //         ))}
-                        //     </div></div>
-                    }
-                    {(favorites.length > 0) && <div>
-                        <RecipeList recipes={favorites} title='my favorites' />
-                    </div>
-                    }
+                    {settings_win && <div className="settings">
+                        <button type="button" style={{ width: "36px", color: "#000000" }} onClick={() => handleClose()}><i class="fa-regular fa-circle-xmark"></i></button>
+                        <div>
+                            {avatars.map((avatar) => (
+                                <button type="button" onClick={() => Avatar(avatar)}>
+                                    <i class={avatar}></i>
+                                </button>
+                            ))}
+                        </div>
+                    </div>}
+                    {(recipes.length > 0) && <RecipeList recipes={recipes} title='my recipes' />}
+                    {(favorites.length > 0) && <RecipeList recipes={favorites} title='my favorites' />}
 
                 </div>
             )}

@@ -74,26 +74,30 @@ const UserDetails = () => {
     }
 
     return (
-        <div className="recipe-details">
+        <div className="profile-details">
             {isPending && <div><i class="fa-solid fa-spinner fa-spin-pulse"></i> Loading...</div>}
             {error && <div>Error...</div>}
             {user && (
-                <div>
+                <div className="profile-info">
                     <h2>{user.fname} {user.lname}</h2>
-                    <div className='avatar'>
-                        <i class={user.avatar}></i>
+                    <div className='user-details'>
+                        <div className='avatar'>
+                            <i class={user.avatar}></i>
+                        </div>
+                        <div>
+                            <p><i class="fa-solid fa-envelope"></i> {user.email}</p>
+                            <p><i class="fa-solid fa-book"></i> recipes: {user.recipes.length}</p>
+                            <p><i class="fa-solid fa-star"></i> favorites: {user.collections.length}</p>
+                            {user.author && <p><i class="fa-solid fa-pen"></i> author</p>}
+                            {user.manager && <p><i class="fa-sharp fa-solid fa-user-tie"></i> manager</p>}
+                        </div>
                     </div>
-                    <p><i class="fa-solid fa-envelope"></i> {user.email}</p>
-                    <p><i class="fa-solid fa-book"></i> recipes: {user.recipes.length}</p>
-                    <p><i class="fa-solid fa-star"></i> favorites: {user.collections.length}</p>
-                    {user.author && <p><i class="fa-solid fa-pen"></i> author</p>}
-                    {user.manager && <p><i class="fa-sharp fa-solid fa-user-tie"></i> manager</p>}
                     {(user.recipes.length > 0) &&
                         <RecipeList recipes={recipes} title='recipes' />
                     }
                     {!user.author && <button onClick={makeAuthor}>make Author</button>}
                     {user.author && <button onClick={makeAuthor}>remove Author</button>}
-                    <button onClick={handleDelete}>DELETE</button>
+                    <button onClick={handleDelete}>Delete User</button>
 
 
                 </div>
