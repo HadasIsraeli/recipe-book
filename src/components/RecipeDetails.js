@@ -79,9 +79,10 @@ const RecipeDetails = () => {
                     {user.collections.includes(recipe._id) && <button onClick={() => handleCollection('delete')}><i class="fa-solid fa-star"></i></button>}
 
                     <p>Written By: {recipe.author}</p>
-                    {!recipe.img && <img src="https://handletheheat.com/wp-content/uploads/2015/03/Best-Birthday-Cake-with-milk-chocolate-buttercream-SQUARE.jpg"
-                        alt="your-image-description" />}
-                    {recipe.img && <img src={'https://recipe-book-server.onrender.com/'+recipe.img} alt={recipe.title} />}
+                    {!recipe.img && <i class="fa-solid fa-utensils" style={{ 'font-size': '30px' }}></i>}
+                    {recipe.img && recipe.img.includes('https://') && <img src={recipe.img} alt={recipe.title} />}
+                    {recipe.img && !recipe.img.includes('https://') && <img src={'https://recipe-book-server.onrender.com/' + recipe.img} alt={recipe.title} />}
+
                     <br />
                     <h5>Oven Temperature: {recipe.temp} C</h5>
                     <h5>Total Time: {recipe.time} min</h5>

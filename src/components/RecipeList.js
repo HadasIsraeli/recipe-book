@@ -11,9 +11,10 @@ const RecipeList = ({ recipes, title }) => {
                         <div className="polaroid-card" key={recipe._id} >
 
                             <div className="image-container">
-                                {!recipe.img && <img src="https://handletheheat.com/wp-content/uploads/2015/03/Best-Birthday-Cake-with-milk-chocolate-buttercream-SQUARE.jpg"
-                                    alt="your-image-description" />}
-                                {recipe.img && <img src={recipe.img} alt={recipe.title} />}
+                                {!recipe.img && <i class="fa-solid fa-utensils" style={{ 'font-size': '30px' }}></i>}
+                                {recipe.img && recipe.img.includes('https://') && <img src={recipe.img} alt={recipe.title} />}
+                                {recipe.img && !recipe.img.includes('https://') && <img src={'https://recipe-book-server.onrender.com/' + recipe.img} alt={recipe.title} />}
+
                             </div>
                             <div className="caption-container">
                                 <h2>{recipe.title}</h2>
