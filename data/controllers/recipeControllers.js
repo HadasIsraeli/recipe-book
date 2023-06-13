@@ -46,7 +46,8 @@ const getSearchRecipes = async (req, res) => {
 const createRecipe = async (req, res) => {
     const { title, body, author, ingredients, note, time, temp, img, author_id } = req.body;
     if (req.file) {
-        const file = req.file.path;
+        console.log(req.file);
+        const file = 'https://recipe-book-server.onrender.com/' + req.file.path;
         try {
             const recipe = await Recipe.create({ title, body, author, ingredients, note, time, temp, img: file, author_id })
                 .then(async result => {
