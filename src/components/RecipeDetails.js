@@ -81,7 +81,7 @@ const RecipeDetails = () => {
                     <p>Written By: {recipe.author}</p>
                     {!recipe.img && <img src="https://handletheheat.com/wp-content/uploads/2015/03/Best-Birthday-Cake-with-milk-chocolate-buttercream-SQUARE.jpg"
                         alt="your-image-description" />}
-                    {recipe.img && <img src={recipe.img} alt={recipe.title} />}
+                    {recipe.img && <img src={'https://recipe-book-server.onrender.com/'+recipe.img} alt={recipe.title} />}
                     <br />
                     <h5>Oven Temperature: {recipe.temp} C</h5>
                     <h5>Total Time: {recipe.time} min</h5>
